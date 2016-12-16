@@ -16740,7 +16740,7 @@ Page.prototype = {
             lang = (this.language_from_url() || Cookies.get('language') || 'EN').toUpperCase();
             this._lang = lang;
         }
-        console.log(lang);
+        console.log(Cookies.get('language'));
         return lang;
     },
     on_load: function() {
