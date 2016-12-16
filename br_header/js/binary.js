@@ -16442,7 +16442,6 @@ Header.prototype = {
         this.show_or_hide_login_form();
         this.show_or_hide_language();
         this.logout_handler();
-        this.check_risk_classification();
         if (!$('body').hasClass('BlueTopBack')) {
             checkClientsCountry();
         }
