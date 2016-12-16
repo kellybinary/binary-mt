@@ -680,6 +680,9 @@ body ul.checked li {
   background-position: left;
   padding-left: 35px;
 }
+body .all-hide {
+  display: none !important;
+}
 body .app-store-badge, body .google-play-badge {
   background-repeat: no-repeat;
   width: 135px;
