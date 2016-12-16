@@ -16706,22 +16706,7 @@ var Page = function(config) {
 
 Page.prototype = {
     all_languages: function() {
-        return {
-            EN   : 'English',
-            DE   : 'Deutsch',
-            ES   : 'Español',
-            FR   : 'Français',
-            ID   : 'Indonesia',
-            IT   : 'Italiano',
-            JA   : '日本語',
-            PL   : 'Polish',
-            PT   : 'Português',
-            RU   : 'Русский',
-            TH   : 'Thai',
-            VI   : 'Tiếng Việt',
-            ZH_CN: '简体中文',
-            ZH_TW: '繁體中文',
-        };
+        return ['EN', 'AR', 'DE', 'ES', 'FR', 'ID', 'IT', 'PL', 'PT', 'RU', 'VI', 'ZH_CN', 'ZH_TW', 'ACH']; // ACH is a pseudo language used for in-context translation
     },
     language_from_url: function() {
         var regex = new RegExp('^(' + this.all_languages().join('|') + ')$', 'i');
