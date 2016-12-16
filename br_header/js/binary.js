@@ -16479,9 +16479,11 @@ Header.prototype = {
     show_or_hide_login_form: function() {
         if (!this.user.is_logged_in || !this.client.is_logged_in) return;
         var all_accounts = $('#all-accounts');
+        var language = $('#select_language');
         var that = this;
         $('.nav-menu').unbind('click').on('click', function(event) {
             event.stopPropagation();
+            that.animate_disappear(language);
             if (all_accounts.css('opacity') == 1) {
                 that.animate_disappear(all_accounts);
             } else {
