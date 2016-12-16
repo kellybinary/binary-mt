@@ -17351,6 +17351,50 @@ for (var key in texts_json) {
     }
 }
 
+;var $languages,
+    languageCode,
+    languageText;
+
+function create_language_drop_down(languages) {
+    $languages = $('.languages');
+    var selectLanguage = 'ul#select_language',
+        $selectLanguage = $languages.find(selectLanguage);
+    if ($languages.length === 0 || $selectLanguage.find('li span.language').text() !== '') return;
+    languages.sort(function(a, b) {
+        return (a === 'EN' || a < b) ? -1 : 1;
+    });
+    var displayLanguage = 'ul#display_language',
+        language = page.language();
+    languageCode = language && language !== '' ? language : 'en';
+    languageText = language && language !== '' ? map_code_to_language(language) : 'English';
+    add_display_language(displayLanguage);
+    add_display_language(selectLanguage);
+    for (var i = 0; i < languages.length; i++) {
+        if (languages[i] !== 'JA') {
+            $selectLanguage.append('<li class="' + languages[i] + '">' + map_code_to_language(languages[i]) + '</li>');
+        }
+    }
+    $selectLanguage.find('li.' + language + ':eq(1)').addClass('invisible');
+    page.on_change_language();
+    $('.languages').removeClass('invisible');
+}
+
+function add_display_language(id) {
+    $languages.find(id + ' li')
+              .addClass(languageCode)
+              .find('span.language')
+              .text(languageText);
+}
+
+function map_code_to_language(code) {
+    var map = page.all_languages();
+    return map[code];
+}
+
+module.exports = {
+    create_language_drop_down: create_language_drop_down,
+};
+
 ;var CommonData = {
     getLoginToken: function() { return Cookies.get('login'); }
 };
@@ -17478,50 +17522,6 @@ function addComma(num){
     return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-;var $languages,
-    languageCode,
-    languageText;
-
-function create_language_drop_down(languages) {
-    $languages = $('.languages');
-    var selectLanguage = 'ul#select_language',
-        $selectLanguage = $languages.find(selectLanguage);
-    if ($languages.length === 0 || $selectLanguage.find('li span.language').text() !== '') return;
-    languages.sort(function(a, b) {
-        return (a === 'EN' || a < b) ? -1 : 1;
-    });
-    var displayLanguage = 'ul#display_language',
-        language = page.language();
-    languageCode = language && language !== '' ? language : 'en';
-    languageText = language && language !== '' ? map_code_to_language(language) : 'English';
-    add_display_language(displayLanguage);
-    add_display_language(selectLanguage);
-    for (var i = 0; i < languages.length; i++) {
-        if (languages[i] !== 'JA') {
-            $selectLanguage.append('<li class="' + languages[i] + '">' + map_code_to_language(languages[i]) + '</li>');
-        }
-    }
-    $selectLanguage.find('li.' + language + ':eq(1)').addClass('invisible');
-    page.on_change_language();
-    $('.languages').removeClass('invisible');
-}
-
-function add_display_language(id) {
-    $languages.find(id + ' li')
-              .addClass(languageCode)
-              .find('span.language')
-              .text(languageText);
-}
-
-function map_code_to_language(code) {
-    var map = page.all_languages();
-    return map[code];
-}
-
-module.exports = {
-    create_language_drop_down: create_language_drop_down,
-};
-
 ;var SessionDurationLimit = (function() {
     'use strict';
 
@@ -17647,7 +17647,8 @@ pjax_config_page("/terms-and-conditions", function() {
     };
 });
 
-;/*
+;var create_language_drop_down = require('../common_functions/attach_dom/language_dropdown').create_language_drop_down;
+/*
  * It provides a abstraction layer over native javascript Websocket.
  *
  * Provide additional functionality like if connection is close, open
@@ -17817,6 +17818,7 @@ function BinarySocketClass() {
                     page.client.check_tnc();
                 } else if (type === 'website_status') {
                     if(!response.hasOwnProperty('error')) {
+                        create_language_drop_down(response.website_status.supported_languages);
                         LocalStore.set('website.tnc_version', response.website_status.terms_conditions_version);
                         page.client.check_tnc();
                         if (response.website_status.hasOwnProperty('clients_country')) {
