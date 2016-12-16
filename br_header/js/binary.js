@@ -16778,6 +16778,7 @@ Page.prototype = {
             var cookie = new CookieStorage('language');
             cookie.write(language);
             document.location = that.url_for_language(language);
+            console.log(language);
         });
     },
     on_change_loginid: function() {
