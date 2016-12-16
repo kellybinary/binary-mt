@@ -16482,6 +16482,7 @@ Header.prototype = {
         var that = this;
         $('.nav-menu').unbind('click').on('click', function(event) {
             event.stopPropagation();
+            that.animate_disappear(language);
             if (all_accounts.css('opacity') == 1) {
                 that.animate_disappear(all_accounts);
             } else {
@@ -16528,7 +16529,7 @@ Header.prototype = {
     start_clock_ws: function() {
         function getTime() {
             clock_started = true;
-            BinarySocket.send({'time': 1,'passthrough': {'client_time': moment().valueOf()}});
+            BinarySocket.send({ time: 1, passthrough: { client_time: moment().valueOf() } });
         }
         this.run = function() {
             setInterval(getTime, 30000);
@@ -16536,9 +16537,8 @@ Header.prototype = {
 
         this.run();
         getTime();
-        return;
     },
-    time_counter : function(response) {
+    time_counter: function(response) {
         if (isNaN(response.echo_req.passthrough.client_time) || response.error) {
             page.header.start_clock_ws();
             return;
@@ -16552,11 +16552,15 @@ Header.prototype = {
         that.client_time_at_response = moment().valueOf();
         that.server_time_at_response = ((start_timestamp * 1000) + (that.client_time_at_response - pass));
         var update_time = function() {
-            window.time = moment(that.server_time_at_response + moment().valueOf() - that.client_time_at_response).utc();
-            var timeStr = window.time.format("YYYY-MM-DD HH:mm") + ' GMT';
-
-            clock.html(timeStr);
-            showLocalTimeOnHover('#gmt-clock');
+            window.time = moment((that.server_time_at_response + moment().valueOf()) -
+                that.client_time_at_response).utc();
+            var timeStr = window.time.format('YYYY-MM-DD HH:mm') + ' GMT';
+            if (japanese_client()) {
+                clock.html(toJapanTimeIfNeeded(timeStr, 1, '', 1));
+            } else {
+                clock.html(timeStr);
+                showLocalTimeOnHover('#gmt-clock');
+            }
             window.HeaderTimeUpdateTimeOutRef = setTimeout(update_time, 1000);
         };
         update_time();
