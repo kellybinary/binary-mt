@@ -16725,7 +16725,7 @@ Page.prototype = {
         };
     },
     language_from_url: function() {
-        var regex = new RegExp('^(' + this.all_languages().join('|') + ')$', 'i');
+        var regex = new RegExp('^(' + Object.keys(this.all_languages()).join('|') + ')$', 'i');
         var langs = window.location.href.split('/').slice(3);
         for (var i = 0; i < langs.length; i++) {
             var lang = langs[i];
