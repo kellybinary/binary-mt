@@ -16440,50 +16440,26 @@ var Header = function(params) {
 Header.prototype = {
     on_load: function() {
         this.show_or_hide_login_form();
-        this.show_or_hide_language();
+        this.register_dynamic_links();
         this.logout_handler();
-        if (page.client.is_logged_in) {
-            $('ul#menu-top').addClass('smaller-font');
-        }
     },
     on_unload: function() {
         this.menu.reset();
     },
     animate_disappear: function(element) {
-        element.animate({ opacity: 0 }, 100, function() {
-            element.css({ visibility: 'hidden', display: 'none' });
+        element.animate({'opacity':0}, 100, function() {
+            element.css('visibility', 'hidden');
         });
     },
     animate_appear: function(element) {
-        element.css({ visibility: 'visible', display: 'block' })
-               .animate({ opacity: 1 }, 100);
-    },
-    show_or_hide_language: function() {
-        var that = this;
-        var $el = $('#select_language'),
-            $all_accounts = $('#all-accounts');
-        $('.languages').on('click', function(event) {
-            event.stopPropagation();
-            that.animate_disappear($all_accounts);
-            if (+$el.css('opacity') === 1) {
-                that.animate_disappear($el);
-            } else {
-                that.animate_appear($el);
-            }
-        });
-        $(document).unbind('click').on('click', function() {
-            that.animate_disappear($all_accounts);
-            that.animate_disappear($el);
-        });
+        element.css('visibility', 'visible').animate({'opacity': 1}, 100);
     },
     show_or_hide_login_form: function() {
         if (!this.user.is_logged_in || !this.client.is_logged_in) return;
         var all_accounts = $('#all-accounts');
-        var language = $('#select_language');
         var that = this;
         $('.nav-menu').unbind('click').on('click', function(event) {
             event.stopPropagation();
-            that.animate_disappear(language);
             if (all_accounts.css('opacity') == 1) {
                 that.animate_disappear(all_accounts);
             } else {
@@ -16749,10 +16725,8 @@ Page.prototype = {
     },
     on_change_language: function() {
         var that = this;
-        $('#select_language li').on('click', function() {
-            var language = $(this).attr('class');
-            if (page.language() === language) return;
-            $('#display_language .language').text($(this).text());
+        $('#language_select').on('change', 'select', function() {
+            var language = $(this).find('option:selected').attr('class');
             var cookie = new CookieStorage('language');
             cookie.write(language);
             document.location = that.url_for_language(language);
