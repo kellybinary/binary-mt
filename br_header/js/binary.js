@@ -16731,7 +16731,6 @@ Page.prototype = {
         for (var i = 0; i < langs.length; i++) {
             var lang = langs[i];
             if (regex.test(lang)) { 
-                console.log(lang);
                 return lang.toUpperCase(); 
             }
         }
@@ -16778,7 +16777,6 @@ Page.prototype = {
             var cookie = new CookieStorage('language');
             cookie.write(language);
             document.location = that.url_for_language(language);
-            console.log(language);
         });
     },
     on_change_loginid: function() {
