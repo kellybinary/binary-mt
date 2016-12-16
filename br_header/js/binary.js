@@ -16747,8 +16747,10 @@ Page.prototype = {
     },
     on_change_language: function() {
         var that = this;
-        $('#language_select').on('change', 'select', function() {
-            var language = $(this).find('option:selected').attr('class');
+        $('#select_language li').on('click', function() {
+            var language = $(this).attr('class');
+            if (page.language() === language) return;
+            $('#display_language .language').text($(this).text());
             var cookie = new CookieStorage('language');
             cookie.write(language);
             document.location = that.url_for_language(language);
