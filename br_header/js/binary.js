@@ -16440,73 +16440,90 @@ var Header = function(params) {
 Header.prototype = {
     on_load: function() {
         this.show_or_hide_login_form();
-        this.register_dynamic_links();
+        this.show_or_hide_language();
         this.logout_handler();
+        this.check_risk_classification();
+        if (!$('body').hasClass('BlueTopBack')) {
+            checkClientsCountry();
+        }
+        if (page.client.is_logged_in) {
+            $('ul#menu-top').addClass('smaller-font');
+        }
     },
     on_unload: function() {
         this.menu.reset();
     },
     animate_disappear: function(element) {
-        element.animate({'opacity':0}, 100, function() {
-            element.css('visibility', 'hidden');
+        element.animate({ opacity: 0 }, 100, function() {
+            element.css({ visibility: 'hidden', display: 'none' });
         });
     },
     animate_appear: function(element) {
-        element.css('visibility', 'visible').animate({'opacity': 1}, 100);
+        element.css({ visibility: 'visible', display: 'block' })
+               .animate({ opacity: 1 }, 100);
+    },
+    show_or_hide_language: function() {
+        var that = this;
+        var $el = $('#select_language'),
+            $all_accounts = $('#all-accounts');
+        $('.languages').on('click', function(event) {
+            event.stopPropagation();
+            that.animate_disappear($all_accounts);
+            if (+$el.css('opacity') === 1) {
+                that.animate_disappear($el);
+            } else {
+                that.animate_appear($el);
+            }
+        });
+        $(document).unbind('click').on('click', function() {
+            that.animate_disappear($all_accounts);
+            that.animate_disappear($el);
+        });
     },
     show_or_hide_login_form: function() {
         if (!this.user.is_logged_in || !this.client.is_logged_in) return;
-        var all_accounts = $('#all-accounts');
-        var that = this;
+        var all_accounts = $('#all-accounts'),
+            language = $('#select_language'),
+            that = this;
         $('.nav-menu').unbind('click').on('click', function(event) {
             event.stopPropagation();
-            if (all_accounts.css('opacity') == 1) {
+            that.animate_disappear(language);
+            if (+all_accounts.css('opacity') === 1) {
                 that.animate_disappear(all_accounts);
             } else {
                 that.animate_appear(all_accounts);
             }
         });
-        $(document).unbind('click').on('click', function() {
-            that.animate_disappear(all_accounts);
-        });
         var loginid_select = '';
         var loginid_array = this.user.loginid_array;
-        for (var i=0; i < loginid_array.length; i++) {
+        for (var i = 0; i < loginid_array.length; i++) {
             var login = loginid_array[i];
-            if (login.disabled) continue;
+            if (!login.disabled) {
+                var curr_id = login.id;
+                var type = 'Virtual';
+                if (login.real) {
+                    if (login.financial)          type = 'Investment';
+                    else if (login.non_financial) type = 'Gaming';
+                    else                          type = 'Real';
+                }
+                type += ' Account';
 
-            var curr_id = login.id;
-            var type = 'Virtual';
-            if (login.real) {
-                if (login.financial)          type = 'Investment';
-                else if (login.non_financial) type = 'Gaming';
-                else                          type = 'Real';
-            }
-            type = type + ' Account';
-
-            // default account
-            if (curr_id == this.client.loginid) {
-                $('#client-logged-in .account-type').html(text.localize(type));
-                $('#client-logged-in .account-id').html(curr_id);
-            } else {
-                loginid_select += '<a href="#" value="' + curr_id + '"><li>' + text.localize(type) + '<div>' + curr_id + '</div>' +
-                                  '</li></a>' + '<div class="separator-line-thin-gray"></div>';
+                // default account
+                if (curr_id === this.client.loginid) {
+                    $('.account-type').html(page.text.localize(type));
+                    $('.account-id').html(curr_id);
+                } else {
+                    loginid_select += '<a href="#" value="' + curr_id + '"><li>' + page.text.localize(type) + '<div>' + curr_id + '</div>' +
+                                      '</li></a><div class="separator-line-thin-gray"></div>';
+                }
             }
         }
-        $(".login-id-list").html(loginid_select);
-    },
-    register_dynamic_links: function() {
-        var logged_in_url = page.url.url_for(this.client.is_logged_in ? 'user/settings/metatrader' : '');
-
-        $('#logo').attr('href', logged_in_url).on('click', function(event) {
-            event.preventDefault();
-            load_with_pjax(logged_in_url);
-        }).addClass('unbind_later');
+        $('.login-id-list').html(loginid_select);
     },
     start_clock_ws: function() {
         function getTime() {
             clock_started = true;
-            BinarySocket.send({'time': 1,'passthrough': {'client_time': moment().valueOf()}});
+            BinarySocket.send({ time: 1, passthrough: { client_time: moment().valueOf() } });
         }
         this.run = function() {
             setInterval(getTime, 30000);
@@ -16514,9 +16531,8 @@ Header.prototype = {
 
         this.run();
         getTime();
-        return;
     },
-    time_counter : function(response) {
+    time_counter: function(response) {
         if (isNaN(response.echo_req.passthrough.client_time) || response.error) {
             page.header.start_clock_ws();
             return;
@@ -16530,19 +16546,72 @@ Header.prototype = {
         that.client_time_at_response = moment().valueOf();
         that.server_time_at_response = ((start_timestamp * 1000) + (that.client_time_at_response - pass));
         var update_time = function() {
-            window.time = moment(that.server_time_at_response + moment().valueOf() - that.client_time_at_response).utc();
-            var timeStr = window.time.format("YYYY-MM-DD HH:mm") + ' GMT';
-
-            clock.html(timeStr);
-            showLocalTimeOnHover('#gmt-clock');
+            window.time = moment((that.server_time_at_response + moment().valueOf()) -
+                that.client_time_at_response).utc();
+            var timeStr = window.time.format('YYYY-MM-DD HH:mm') + ' GMT';
+            if (japanese_client()) {
+                clock.html(toJapanTimeIfNeeded(timeStr, 1, '', 1));
+            } else {
+                clock.html(timeStr);
+                showLocalTimeOnHover('#gmt-clock');
+            }
             window.HeaderTimeUpdateTimeOutRef = setTimeout(update_time, 1000);
         };
         update_time();
     },
-    logout_handler : function(){
-        $('a.logout').unbind('click').click(function(){
+    logout_handler: function() {
+        $('a.logout').unbind('click').click(function() {
             page.client.send_logout_request();
         });
+    },
+    check_risk_classification: function() {
+        if (localStorage.getItem('risk_classification.response') === 'high' &&
+            localStorage.getItem('risk_classification') === 'high' && this.qualify_for_risk_classification()) {
+            this.renderRiskClassificationPopUp();
+        }
+    },
+    renderRiskClassificationPopUp: function () {
+        if (window.location.pathname === '/user/settings/assessmentws') {
+            window.location.href = page.url.url_for('user/settingsws');
+            return;
+        }
+        $.ajax({
+            url     : page.url.url_for('user/settings/assessmentws'),
+            dataType: 'html',
+            method  : 'GET',
+            success : function(riskClassificationText) {
+                if (riskClassificationText.includes('assessment_form')) {
+                    var payload = $(riskClassificationText);
+                    RiskClassification.showRiskClassificationPopUp(payload.find('#assessment_form'));
+                    FinancialAssessmentws.LocalizeText();
+                    $('#risk_classification #assessment_form').removeClass('invisible')
+                                        .attr('style', 'text-align: left;');
+                    $('#risk_classification #high_risk_classification').removeClass('invisible');
+                    $('#risk_classification #heading_risk').removeClass('invisible');
+                    $('#risk_classification #assessment_form').on('submit', function(event) {
+                        event.preventDefault();
+                        FinancialAssessmentws.submitForm();
+                        return false;
+                    });
+                }
+            },
+            error: function() {
+                return false;
+            },
+        });
+        $('#risk_classification #assessment_form').on('submit', function(event) {
+            event.preventDefault();
+            FinancialAssessmentws.submitForm();
+            return false;
+        });
+    },
+    qualify_for_risk_classification: function() {
+        if (page.client.is_logged_in && !page.client.is_virtual() &&
+            page.client.residence !== 'jp' && !$('body').hasClass('BlueTopBack') && $('#assessment_form').length === 0 &&
+            (localStorage.getItem('reality_check.ack') === '1' || !localStorage.getItem('reality_check.interval'))) {
+            return true;
+        }
+        return false;
     },
     validate_cookies: function() {
         var loginid_list = Cookies.get('loginid_list');
@@ -16550,7 +16619,7 @@ Header.prototype = {
         if (!loginid || !loginid_list) return;
 
         var accIds = loginid_list.split('+');
-        var valid_loginids = new RegExp('^(' + page.settings.get('valid_loginids') + ')[0-9]+$', 'i');
+        var valid_loginids = new RegExp('^(MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP)[0-9]+$', 'i');
 
         function is_loginid_valid(login_id) {
             return login_id ?
@@ -16563,7 +16632,7 @@ Header.prototype = {
         }
 
         accIds.forEach(function(acc_id) {
-            if (!is_loginid_valid(acc_id.split(":")[0])) {
+            if (!is_loginid_valid(acc_id.split(':')[0])) {
                 page.client.send_logout_request();
             }
         });
@@ -16572,7 +16641,9 @@ Header.prototype = {
         if (response.logout !== 1) return;
         page.client.clear_storage_values();
         LocalStore.remove('client.tokens');
-        var cookies = ['login', 'loginid', 'loginid_list', 'email', 'settings', 'residence'];
+        LocalStore.set('reality_check.ack', 0);
+        sessionStorage.removeItem('client_status');
+        var cookies = ['login', 'loginid', 'loginid_list', 'email', 'settings', 'reality_check', 'affiliate_token', 'affiliate_tracking', 'residence'];
         var domains = [
             '.' + document.domain.split('.').slice(-2).join('.'),
             '.' + document.domain,
@@ -16585,15 +16656,17 @@ Header.prototype = {
 
         cookies.forEach(function(c) {
             var regex = new RegExp(c);
-            Cookies.remove(c, {path: '/', domain: domains[0]});
-            Cookies.remove(c, {path: '/', domain: domains[1]});
+            Cookies.remove(c, { path: '/', domain: domains[0] });
+            Cookies.remove(c, { path: '/', domain: domains[1] });
             Cookies.remove(c);
             if (regex.test(document.cookie) && parent_path) {
-                Cookies.remove(c, {path: parent_path, domain: domains[0]});
-                Cookies.remove(c, {path: parent_path, domain: domains[1]});
-                Cookies.remove(c, {path: parent_path});
+                Cookies.remove(c, { path: parent_path, domain: domains[0] });
+                Cookies.remove(c, { path: parent_path, domain: domains[1] });
+                Cookies.remove(c, { path: parent_path });
             }
         });
+        localStorage.removeItem('risk_classification');
+        localStorage.removeItem('risk_classification.response');
         page.reload();
     },
 };
@@ -16725,8 +16798,10 @@ Page.prototype = {
     },
     on_change_language: function() {
         var that = this;
-        $('#language_select').on('change', 'select', function() {
-            var language = $(this).find('option:selected').attr('class');
+        $('#select_language li').on('click', function() {
+            var language = $(this).attr('class');
+            if (page.language() === language) return;
+            $('#display_language .language').text($(this).text());
             var cookie = new CookieStorage('language');
             cookie.write(language);
             document.location = that.url_for_language(language);
