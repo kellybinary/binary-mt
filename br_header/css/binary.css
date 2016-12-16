@@ -322,30 +322,26 @@ div ul li.no-bullet {
 
 /* main style */
 /* Logo and top bar */
-body #topbar {
+#topbar {
   height: 20px;
   line-height: 20px !important;
 }
-body #topbar #virtual-text {
+#topbar #virtual-text {
   font-weight: 700;
 }
-body #topbar #topbar-info {
+#topbar #topbar-info {
   margin-left: auto;
-  height: 23px;
 }
-body #topbar #topbar-info > div {
-  height: 23px;
-}
-body #topbar #gmt-clock, body #topbar #contact-us, body #topbar .upgrademessage {
+#topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
           align-self: center;
 }
-body #topbar #gmt-clock {
+#topbar #gmt-clock {
   display: inline-block;
   min-width: 210px;
 }
-body #topbar .upgrademessage a {
+#topbar .upgrademessage a {
   color: #fff;
   text-decoration: none;
   text-align: center;
@@ -362,24 +358,20 @@ body #topbar .upgrademessage a {
   text-transform: none;
   margin: 0 0 0 10px;
 }
-body #topbar .upgrademessage a:visited {
+#topbar .upgrademessage a:visited {
   color: #fff;
 }
-body #topbar .upgrademessage a:hover, body #topbar .upgrademessage a:active {
+#topbar .upgrademessage a:hover, #topbar .upgrademessage a:active {
   text-decoration: none;
   background-color: #14602B;
 }
-body #topbar a {
+#topbar #language_select select {
+  padding: 0px;
+}
+#topbar a {
   color: #fff;
   white-space: nowrap;
   text-decoration: none;
-}
-body #topbar #select_language {
-  right: 0px;
-  top: -23px;
-}
-body #topbar #display_language li:first-child {
-  margin-top: 0;
 }
 
 #header {
