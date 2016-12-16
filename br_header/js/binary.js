@@ -16749,7 +16749,7 @@ Page.prototype = {
         this.url.reset();
         this.localize_for(this.language());
         this.header.on_load();
-        // this.on_change_language();
+        this.on_change_language();
         this.on_change_loginid();
         this.contents.on_load();
         if (CommonData.getLoginToken()) {
