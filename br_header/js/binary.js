@@ -16442,9 +16442,6 @@ Header.prototype = {
         this.show_or_hide_login_form();
         this.show_or_hide_language();
         this.logout_handler();
-        if (!$('body').hasClass('BlueTopBack')) {
-            checkClientsCountry();
-        }
         if (page.client.is_logged_in) {
             $('ul#menu-top').addClass('smaller-font');
         }
