@@ -16708,6 +16708,7 @@ Page.prototype = {
     all_languages: function() {
       //  return ['EN', 'AR', 'DE', 'ES', 'FR', 'ID', 'IT', 'PL', 'PT', 'RU', 'VI', 'ZH_CN', 'ZH_TW', 'ACH']; // ACH is a pseudo language used for in-context translation
            return {
+            ACH  : 'Translation',
             EN   : 'English',
             DE   : 'Deutsch',
             ES   : 'Español',
