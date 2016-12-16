@@ -16730,7 +16730,10 @@ Page.prototype = {
         var langs = window.location.href.split('/').slice(3);
         for (var i = 0; i < langs.length; i++) {
             var lang = langs[i];
-            if (regex.test(lang)) return lang.toUpperCase();
+            if (regex.test(lang)) { 
+                console.log(lang);
+                return lang.toUpperCase(); 
+            }
         }
         return '';
     },
@@ -16740,7 +16743,6 @@ Page.prototype = {
             lang = (this.language_from_url() || Cookies.get('language') || 'EN').toUpperCase();
             this._lang = lang;
         }
-        console.log(Cookies.get('language'));
         return lang;
     },
     on_load: function() {
