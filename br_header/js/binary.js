@@ -16828,7 +16828,7 @@ Page.prototype = {
         return window.location.href.replace(new RegExp('\/' + page.language() + '\/', 'i'), '/' + lang.toLowerCase() + '/');
     },
     reload: function(forcedReload) {
-        window.location.reload(forcedReload ? true : false);
+        window.location.reload(!!forcedReload);
     },
     check_new_release: function() { // calling this method is handled by GTM tags
         var last_reload = localStorage.getItem('new_release_reload_time');
