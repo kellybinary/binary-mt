@@ -331,6 +331,10 @@ div ul li.no-bullet {
 }
 #topbar #topbar-info {
   margin-left: auto;
+  height: 23px;
+}
+#topbar #topbar-info > div {
+  height: 23px;
 }
 #topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   -webkit-align-self: center;
@@ -365,13 +369,17 @@ div ul li.no-bullet {
   text-decoration: none;
   background-color: #14602B;
 }
-#topbar #language_select select {
-  padding: 0px;
-}
 #topbar a {
   color: #fff;
   white-space: nowrap;
   text-decoration: none;
+}
+#topbar #select_language {
+  right: 0px;
+  top: -23px;
+}
+#topbar #display_language li:first-child {
+  margin-top: 0;
 }
 
 #header {
