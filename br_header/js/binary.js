@@ -16068,7 +16068,7 @@ var GTM = (function() {
         $.extend(true, data_layer_info, data);
 
         var event = data_layer_info.event;
-        delete data_layer_info['event'];
+        delete data_layer_info.event;
 
         return {
             data : data_layer_info,
@@ -16082,7 +16082,7 @@ var GTM = (function() {
             var info = gtm_data_layer_info(data && typeof(data) === 'object' ? data : null);
             dataLayer[0] = info.data;
             dataLayer.push(info.data);
-            dataLayer.push({"event": info.event});
+            dataLayer.push({ event: info.event});
         }
     };
 
