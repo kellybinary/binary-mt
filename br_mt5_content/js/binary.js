@@ -18418,6 +18418,7 @@ var BinarySocket = new BinarySocketClass();
         var hasMTDemo = mt5Accounts.hasOwnProperty('demo');
 
         if(/demo/.test(accType)) {
+            displayAccount(accType);
             if(!hasMTDemo) {
                 $form = findInSection(accType, '.form-new-account');
                 $form.removeClass(hiddenClass);
