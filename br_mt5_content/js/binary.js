@@ -18420,7 +18420,7 @@ var BinarySocket = new BinarySocketClass();
         if(/demo/.test(accType)) {
             if(!hasMTDemo) {
                 console.log(accType);
-                //displayAccount(accType);
+                displayAccount(volatility);
                 // indInSection(accType, '.account-details');
                 // $form = findInSection(accType, '.form-new-account');
                 // $form.removeClass(hiddenClass);
