@@ -18433,7 +18433,7 @@ var BinarySocket = new BinarySocketClass();
                     });
 
                     findInSection(accType, '.msg-account').html(hasRealBinaryAccount ?
-                        text.localize('To create a real account for MetaTrader, switch to your [_1] real money account.', ['Binary.com']) :
+                        text.localize('To create a Financial Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
                         text.localize('To create a real account for MetaTrader, <a href="[_1]">upgrade to [_2] real money account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
