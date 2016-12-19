@@ -18435,8 +18435,7 @@ var BinarySocket = new BinarySocketClass();
             makeTextRow('', text.localize('Start trading with MetaTrader 5:') + '<div class="download gr-padding-10">' +
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '">' +
                     '<span>' + text.localize('Download desktop app') + '</span></a>' +
-                '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
-                    '<span>' + text.localize('Go to web terminal') + '</span></a><br />' +
+               
                 '<a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=Binary.com-Server" target="_blank">' +
                     '<div class="app-store-badge"></div>' +
                 '</a>' +
