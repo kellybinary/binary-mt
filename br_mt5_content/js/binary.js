@@ -18256,15 +18256,15 @@ var BinarySocket = new BinarySocketClass();
         findInSection(accType, '.form-new-account').addClass(hiddenClass);
         var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
         var $details = $('<div/>').append($(
-            makeTextRow('Login', mt5Accounts[accType].login) +
+            makeTextRow('Login ID', mt5Accounts[accType].login) +
             makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
-            makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="download gr-padding-10">' +
+            makeTextRow('', text.localize('Start trading with MetaTrader 5:') + '<div class="download gr-padding-10">' +
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '">' +
-                    '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
+                    '<span>' + text.localize('Download desktop app') + '</span></a>' +
                 '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
-                    '<span>' + text.localize('MetaTrader Web Platform') + '</span></a><br />' +
+                    '<span>' + text.localize('Go to web terminal') + '</span></a><br />' +
                 '<a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=Binary.com-Server" target="_blank">' +
                     '<div class="app-store-badge"></div>' +
                 '</a>' +
@@ -18555,7 +18555,7 @@ var BinarySocket = new BinarySocketClass();
         if (new_type === 'gaming') new_type = 'volatility';
         mt5Logins[new_login] = new_type;
         MetaTraderData.requestLoginDetails(new_login);
-        showAccountMessage(new_type, text.localize('Congratulations! Your account has been created.'));
+        showAccountMessage(new_type, text.localize('Congratulations! Your Volatility Indices Account has been created.'));
 
         // Update mt5_logins in localStorage
         var mt5_logins = JSON.parse(page.client.get_storage_value('mt5_logins') || '{}');

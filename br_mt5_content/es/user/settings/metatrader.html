@@ -54,14 +54,14 @@
           <link rel="alternate" href="/binary-mt/br_mt5_content/es/user/settings/metatrader.html?l=zh_cn" hreflang="ZH_CN" /> 
           <link rel="alternate" href="/binary-mt/br_mt5_content/es/user/settings/metatrader.html?l=zh_tw" hreflang="ZH_TW" /> 
         
-         <link rel="stylesheet" href="/binary-mt/br_mt5_content/css/binary.min.css?xyebc9l7">
-         <link rel="stylesheet" href="https://style.binary.com/binary.css?xyebc9l7">
+         <link rel="stylesheet" href="/binary-mt/br_mt5_content/css/binary.min.css?eu39o5cs">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?eu39o5cs">
         
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
 <script>
     //A global variable required to initialize Page object.
     window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","image_link":{"hourglass":"/binary-mt/br_mt5_content/images/common/hourglass_1.gif"}}};
-</script>  <script src='/binary-mt/br_mt5_content/js/binary.js?xyebc9l7' defer async></script>
+</script>  <script src='/binary-mt/br_mt5_content/js/binary.js?eu39o5cs' defer async></script>
     </head>
 
 
@@ -249,10 +249,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <p class="msg-account notice-msg center-text invisible"></p>
                 <form class="form-new-account invisible">
                     <!-- <p>Create a Volatility Indices Account to trade Volatility Indices on MT5.</p> -->
-                    <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label">Login ID</div>
-                        <div class="gr-6 form_label align-start">login_id here</div>
-                    </div>
+                    <div class="account-details"></div>
                     <!-- <div class="gr-row gr-padding-10 invisible">
                         <div class="gr-6 form_label"><label>Leverage</label></div>
                         <div class="gr-6">
@@ -264,15 +261,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 <option value="500">500</option>
                             </select>
                         </div>
-                    </div> -->
-                    <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label">Balance</div>
-                        <div class="gr-6 form_label align-start">balance here</div>
-                    </div>
+                    </div> 
                     <div class="name-row gr-row gr-padding-10 invisible">
                         <div class="gr-6 form_label"><label>Name</label></div>
                         <div class="gr-6"><input type="text" class="txtName" maxlength="30" /></div>
-                    </div>
+                    </div> -->
                     <!-- <div class="gr-row gr-padding-10">
                         <div class="gr-6 form_label"><label>Main password (trading access)</label></div>
                         <div class="gr-6">
@@ -288,28 +281,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="gr-6 form_label"><label>Investor password (read-only access)</label></div>
                         <div class="gr-6"><input type="password" class="txtInvestPass" /></div>
                     </div> -->
-                    <hr>
-                    <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label"><label>Start trading with MetaTrader 5:</label></div>
-                    </div>
-                    <div class="gr-row gr-padding-10">
-                        <div class="gr-6 form_label">
-                            <button class="button">Download desktop app</button>
-                            <div class="formMessage center-text"></div>
-                        </div>
-                        <div class="gr-6">
-                            <button class="button">Go to web terminal</button>
-                            <div class="formMessage center-text"></div>
-                        </div>
-                        <div class="gr-6">
-                            <button class="button">Download desktop app</button>
-                            <div class="formMessage center-text"></div>
-                        </div>
-                        <div class="gr-6">
-                            <button class="button">Download desktop app</button>
-                            <div class="formMessage center-text"></div>
-                        </div>
-                    </div>
                     <div class="tnc-row gr-row gr-padding-10 invisible">
                         <div class="gr-12 center-text">
                             <input type="checkbox" class="chkTNC" />
@@ -341,21 +312,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="account-details"></div>
                 <p class="msg-switch-to-deposit notice-msg center-text invisible">To deposit or withdraw from your MetaTrader Account, switch to your Binary.com Real Account.</p>
                 <div class="accordion invisible">
-                    <h3>Deposit to MetaTrader account</h3>
+                    <h3>Make a deposit</h3>
                     <div>
                         <form class="form-deposit">
-                            <p>Deposit funds into your MetaTrader account from your Binary account:</p>
+                            <p>Transfer funds from your Binary.com account into your MT5 account</p>
                             <div class="gr-row gr-padding-10">
-                                <div class="gr-6 form_label">Deposit from</div>
+                                <div class="gr-6 form_label">Transfer from</div>
                                 <div class="gr-6 form_label align-start binary-login"></div>
                             </div>
                             <div class="gr-row gr-padding-10">
-                                <div class="gr-6 form_label">Deposit to</div>
+                                <div class="gr-6 form_label">Deposit into</div>
                                 <div class="gr-6 form_label align-start mt-login"></div>
                             </div>
                             <div class="gr-row gr-padding-10">
-                                <div class="gr-6 form_label"><label>Amount</label></div>
-                                <div class="gr-6">USD <input type="text" maxlength="10" class="txtAmount" /></div>
+                                <div class="gr-6 form_label"><label>Amount (USD)</label></div>
+                                <div class="gr-6"><input type="text" maxlength="10" class="txtAmount" /></div>
                             </div>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label"></div>
@@ -366,25 +337,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </div>
                         </form>
                     </div>
-                    <h3>Withdraw from MetaTrader account</h3>
+                    <h3>Make a withdrawal</h3>
                     <div>
                         <form class="form-withdrawal">
-                            <p>Withdraw funds from your MetaTrader account into your Binary account:</p>
+                            <p>Transfer funds from your MT5 account into your Binary.com account:</p>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label">Withdraw from</div>
                                 <div class="gr-6 form_label align-start mt-login"></div>
                             </div>
                             <div class="gr-row gr-padding-10">
-                                <div class="gr-6 form_label">Withdraw to</div>
+                                <div class="gr-6 form_label">Withdraw into</div>
                                 <div class="gr-6 form_label align-start binary-login"></div>
                             </div>
-                            <div class="gr-row gr-padding-10">
+                            <!-- <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label"><label>MetaTrader Main Password</label></div>
                                 <div class="gr-6"><input type="password" class="txtMainPass" /></div>
-                            </div>
+                            </div> -->
                             <div class="gr-row gr-padding-10">
-                                <div class="gr-6 form_label"><label>Amount</label></div>
-                                <div class="gr-6">USD <input type="text" maxlength="10" class="txtAmount" /></div>
+                                <div class="gr-6 form_label"><label>Amount (USD)</label></div>
+                                <div class="gr-6"><input type="text" maxlength="10" class="txtAmount" /></div>
                             </div>
                             <div class="gr-row gr-padding-10">
                                 <div class="gr-6 form_label"></div>
