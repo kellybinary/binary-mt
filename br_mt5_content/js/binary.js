@@ -18437,8 +18437,8 @@ var BinarySocket = new BinarySocketClass();
                         text.localize('To create a Financial Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) : 
                         text.localize('To create a Volatility Indices Account for MT5, please switch to your [_1] Real Account.', ['Binary.com'])) :
                         (/financial/.test(accType) ?
-                        text.localize('To create a Financial Account for MetaTrader, <a href="[_1]"> please upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com']) :    
-                        text.localize('To create a Volatility Indices Account for MetaTrader, <a href="[_1]"> please upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com']))
+                        text.localize('To create a Financial Account for MetaTrader, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com']) :    
+                        text.localize('To create a Volatility Indices Account for MetaTrader, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com']))
                     ).removeClass(hiddenClass);
                 } else {
                     if(/financial/.test(accType) && !isAuthenticated) {
