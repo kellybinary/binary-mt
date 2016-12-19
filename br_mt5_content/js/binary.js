@@ -16148,7 +16148,7 @@ Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
             $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('Please [_1] to your Binary.com account.', [
+                .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader5 account', [
                         '<a class="login_link" href="javascript:;">' + text.localize('log in') + '</a>'
                     ])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
