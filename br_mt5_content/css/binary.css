@@ -647,6 +647,9 @@ div ul li.no-bullet {
   display: inline-block;
   vertical-align: middle;
 }
+#mt-container h3 {
+  font-weight: 500px;
+}
 
 #contract-specs table td {
   font-size: 0.9em;
