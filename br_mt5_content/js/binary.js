@@ -18428,9 +18428,9 @@ var BinarySocket = new BinarySocketClass();
                      findInSection(accType, '.form-new-account').addClass(hiddenClass);
         var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
         var $details = $('<div/>').append($(
-            // makeTextRow('Login ID', mt5Accounts[accType].login) +
-            // makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
-            makeTextRow('Name', mt5Accounts[accType].name) +
+            makeTextRow('Login ID', 123456) +
+            makeTextRow('Balance', currency + ' ' + 10000, 'balance') +
+            makeTextRow('Name', 'Mr John Smith') +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
             makeTextRow('', text.localize('Start trading with MetaTrader 5:') + '<div class="download gr-padding-10">' +
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '">' +
