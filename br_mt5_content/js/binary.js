@@ -18416,7 +18416,7 @@ var BinarySocket = new BinarySocketClass();
     var manageTabContents = function() {
         var accType = $('.sidebar-nav li.selected').attr('id').split('-')[1];
         var hasMTDemo = mt5Accounts.hasOwnProperty('demo');
-
+        console.log(mt5Accounts);
         if(/demo/.test(accType)) {
             if(!hasMTDemo) {
                 $form = findInSection(accType, '.form-new-account');
