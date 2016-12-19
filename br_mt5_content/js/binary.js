@@ -18419,9 +18419,10 @@ var BinarySocket = new BinarySocketClass();
 
         if(/demo/.test(accType)) {
             if(!hasMTDemo) {
-                $form = findInSection(accType, '.form-new-account');
-                $form.removeClass(hiddenClass);
-                $form.find('.name-row').removeClass(hiddenClass);
+                findInSection(accType, '.account-details').html('hello');
+                // $form = findInSection(accType, '.form-new-account');
+                // $form.removeClass(hiddenClass);
+                // $form.find('.name-row').removeClass(hiddenClass);
             }
         } else if(/financial|volatility/.test(accType)) {
             if(!mt5Accounts.hasOwnProperty(accType)) {
