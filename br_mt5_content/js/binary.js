@@ -18427,8 +18427,6 @@ var BinarySocket = new BinarySocketClass();
                 $form.find('.name-row').removeClass(hiddenClass);
             }
         } else if(/financial|volatility/.test(accType)) {
-            
-            console.log(mt5Accounts.hasOwnProperty(accType));
             if(!mt5Accounts.hasOwnProperty(accType)) {
                 if(page.client.is_virtual()) {
                     // check if this client has real binary account
