@@ -17583,46 +17583,46 @@ function addComma(num){
     return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// use function to generate elements and append them
-// e.g. element is select and element to append is option
-function appendTextValueChild(element, text, value, disabled, el_class){
-    var option = document.createElement("option");
-    option.text = text;
-    if (value) {
-        option.value = value;
-    }
-    if (disabled === 'disabled') {
-      option.setAttribute('disabled', 'disabled');
-    }
-    if (el_class) {
-      option.className = el_class;
-    }
-    element.appendChild(option);
-    return;
-}
+// // use function to generate elements and append them
+// // e.g. element is select and element to append is option
+// function appendTextValueChild(element, text, value, disabled, el_class){
+//     var option = document.createElement("option");
+//     option.text = text;
+//     if (value) {
+//         option.value = value;
+//     }
+//     if (disabled === 'disabled') {
+//       option.setAttribute('disabled', 'disabled');
+//     }
+//     if (el_class) {
+//       option.className = el_class;
+//     }
+//     element.appendChild(option);
+//     return;
+// }
 
-function create_language_drop_down(languages) {
-    var language_select_element = document.getElementById('language_select');
-    languages.sort(function(a, b) {
-        if (a === 'EN' || a < b) {
-            return -1;
-        } else {
-            return 1;
-        }
-    });
-    for (var i = 0; i < languages.length; i++) {
-        if (languages[i] !== 'JA') {
-            appendTextValueChild(language_select_element, map_code_to_language(languages[i]), '', '', languages[i]);
-        }
-    }
-    $('#language_select .' + page.language()).attr('selected', 'selected');
-    $('#language_select').removeClass('invisible');
-}
+// function create_language_drop_down(languages) {
+//     var language_select_element = document.getElementById('language_select');
+//     languages.sort(function(a, b) {
+//         if (a === 'EN' || a < b) {
+//             return -1;
+//         } else {
+//             return 1;
+//         }
+//     });
+//     for (var i = 0; i < languages.length; i++) {
+//         if (languages[i] !== 'JA') {
+//             appendTextValueChild(language_select_element, map_code_to_language(languages[i]), '', '', languages[i]);
+//         }
+//     }
+//     $('#language_select .' + page.language()).attr('selected', 'selected');
+//     $('#language_select').removeClass('invisible');
+// }
 
-function map_code_to_language(code) {
-    var map = page.all_languages();
-    return map[code];
-}
+// function map_code_to_language(code) {
+//     var map = page.all_languages();
+//     return map[code];
+// }
 
 // module.exports = {
 //     appendTextValueChild     : appendTextValueChild,
