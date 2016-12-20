@@ -18424,7 +18424,7 @@ var BinarySocket = new BinarySocketClass();
                 // $form.find('.name-row').removeClass(hiddenClass);
                 
                 // check if this client has real binary account
-                if(hasRealBinaryAccount) {
+                if(page.client.is_virtual()) {
                     console.log('yes');
                 }
                 findInSection(accType, '.form-new-account').addClass(hiddenClass);
