@@ -18417,15 +18417,18 @@ var BinarySocket = new BinarySocketClass();
         var accType = $('.sidebar-nav li.selected').attr('id').split('-')[1];
         var hasMTDemo = mt5Accounts.hasOwnProperty('demo');
         
-        console.log(mt5Accounts);
-            
+
         if(/demo/.test(accType)) {
+            console.log(mt5Accounts.hasOwnProperty(accType));
+        
             if(!hasMTDemo) {
                 $form = findInSection(accType, '.form-new-account');
                 $form.removeClass(hiddenClass);
                 $form.find('.name-row').removeClass(hiddenClass);
             }
         } else if(/financial|volatility/.test(accType)) {
+            
+            console.log(mt5Accounts.hasOwnProperty(accType));
             if(!mt5Accounts.hasOwnProperty(accType)) {
                 if(page.client.is_virtual()) {
                     // check if this client has real binary account
