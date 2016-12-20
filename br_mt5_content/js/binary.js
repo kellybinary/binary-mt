@@ -18447,6 +18447,7 @@ var BinarySocket = new BinarySocketClass();
                         MetaTraderData.requestFinancialAssessment();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
+                        console.log(accType);
                         $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
