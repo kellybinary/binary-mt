@@ -18422,6 +18422,11 @@ var BinarySocket = new BinarySocketClass();
                 // $form = findInSection(accType, '.form-new-account');
                 // $form.removeClass(hiddenClass);
                 // $form.find('.name-row').removeClass(hiddenClass);
+                
+                // check if this client has real binary account
+                if(hasRealBinaryAccount) {
+                    console.log('yes');
+                }
                 findInSection(accType, '.form-new-account').addClass(hiddenClass);
                 var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
                 var $details = $('<div/>').append($(
