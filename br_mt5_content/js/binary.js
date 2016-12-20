@@ -16148,7 +16148,7 @@ Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
             $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader5 account', [
+                .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader5 account.', [
                         '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
                     ])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
@@ -18505,7 +18505,7 @@ var BinarySocket = new BinarySocketClass();
             manageTabContents();
         } else if(!page.client.is_virtual()) {
             findInSection('financial', '.msg-account').html(
-                text.localize('To create a financial account for MetaTrader 5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
+                text.localize('To create a Financial Account for MT5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
             ).removeClass(hiddenClass);
         }
     };
@@ -18675,7 +18675,7 @@ var BinarySocket = new BinarySocketClass();
             // main & investor passwords must vary
             var valueInvestPass = $form.find('.txtInvestPass').val();
             if(valueInvestPass && valueInvestPass === valuePass) {
-                showError('.txtInvestPass', text.localize('Investor Password cannot be same as Main Password.'));
+                showError('.txtInvestPass', text.localize('Investor password cannot be same as Main password.'));
                 isValid = false;
             }
             // name
