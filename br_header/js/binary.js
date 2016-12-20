@@ -16706,13 +16706,13 @@ var Page = function(config) {
 Page.prototype = {
     all_languages: function() {
         return {
+            ACH  : 'Translations',
             EN   : 'English',
             DE   : 'Deutsch',
             ES   : 'Español',
             FR   : 'Français',
             ID   : 'Indonesia',
             IT   : 'Italiano',
-            JA   : '日本語',
             PL   : 'Polish',
             PT   : 'Português',
             RU   : 'Русский',
@@ -17489,10 +17489,7 @@ function map_code_to_language(code) {
 
 })();
 
-;// var Cookies = require('../../lib/js-cookie');
-// var Login = require('../base/login').Login;
-
-function checkClientsCountry() {
+;function checkClientsCountry() {
     var clients_country = localStorage.getItem('clients_country');
     if (clients_country) {
         if (clients_country === 'jp') {
@@ -17526,11 +17523,6 @@ function japanese_client() {
     if (typeof window === 'undefined') return false;
     return (page.language().toLowerCase() === 'ja' || (Cookies.get('residence') === 'jp') || localStorage.getItem('clients_country') === 'jp');
 }
-
-// module.exports = {
-//     checkClientsCountry: checkClientsCountry,
-//     japanese_client    : japanese_client,
-// };
 
 ;function format_money(currency, amount) {
     var symbol = format_money.map[currency];
