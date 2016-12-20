@@ -18424,10 +18424,11 @@ var BinarySocket = new BinarySocketClass();
                 // $form.find('.name-row').removeClass(hiddenClass);
                 
                 // check if this client has real binary account
-                if(page.client.is_virtual()) {
-                    console.log('yes');
+                if(page.client.is_virtual() && !hasRealBinaryAccount) {
+                    console.log('display upgrade to Real Account');
+
                 } else {
-                findInSection(accType, '.form-new-account').addClass(hiddenClass);
+                // findInSection(accType, '.form-new-account').addClass(hiddenClass);
                 var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
                 var $details = $('<div/>').append($(
                     makeTextRow('Login ID', mt5Accounts[accType].login) +
