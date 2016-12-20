@@ -17369,6 +17369,50 @@ for (var key in texts_json) {
     }
 }
 
+;var $languages,
+    languageCode,
+    languageText;
+
+function create_language_drop_down(languages) {
+    $languages = $('.languages');
+    var selectLanguage = 'ul#select_language',
+        $selectLanguage = $languages.find(selectLanguage);
+    if ($languages.length === 0 || $selectLanguage.find('li span.language').text() !== '') return;
+    languages.sort(function(a, b) {
+        return (a === 'EN' || a < b) ? -1 : 1;
+    });
+    var displayLanguage = 'ul#display_language',
+        language = page.language();
+    languageCode = language && language !== '' ? language : 'en';
+    languageText = language && language !== '' ? map_code_to_language(language) : 'English';
+    add_display_language(displayLanguage);
+    add_display_language(selectLanguage);
+    for (var i = 0; i < languages.length; i++) {
+        if (languages[i] !== 'JA') {
+            $selectLanguage.append('<li class="' + languages[i] + '">' + map_code_to_language(languages[i]) + '</li>');
+        }
+    }
+    $selectLanguage.find('li.' + language + ':eq(1)').addClass('invisible');
+    page.on_change_language();
+    $('.languages').removeClass('invisible');
+}
+
+function add_display_language(id) {
+    $languages.find(id + ' li')
+              .addClass(languageCode)
+              .find('span.language')
+              .text(languageText);
+}
+
+function map_code_to_language(code) {
+    var map = page.all_languages();
+    return map[code];
+}
+
+module.exports = {
+    create_language_drop_down: create_language_drop_down,
+};
+
 ;var CommonData = {
     getLoginToken: function() { return Cookies.get('login'); }
 };
@@ -17448,6 +17492,49 @@ for (var key in texts_json) {
     };
 
 })();
+
+;var Cookies = require('../../lib/js-cookie');
+var Login = require('../base/login').Login;
+
+function checkClientsCountry() {
+    var clients_country = localStorage.getItem('clients_country');
+    if (clients_country) {
+        if (clients_country === 'jp') {
+            limitLanguage('JA');
+        } else if (clients_country === 'id') {
+            limitLanguage('ID');
+        } else {
+            $('.languages').show();
+        }
+    } else {
+        BinarySocket.init();
+        BinarySocket.send({ website_status: '1' });
+    }
+}
+
+function limitLanguage(lang) {
+    if (page.language() !== lang && !Login.is_login_pages()) {
+        window.location.href = page.url_for_language(lang);
+    }
+    if (document.getElementById('select_language')) {
+        $('.languages').remove();
+        $('#gmt-clock').removeClass();
+        $('#gmt-clock').addClass('gr-6 gr-12-m');
+        $('#contact-us').removeClass();
+        $('#contact-us').addClass('gr-6 gr-hide-m');
+    }
+}
+
+function japanese_client() {
+    // handle for test case
+    if (typeof window === 'undefined') return false;
+    return (page.language().toLowerCase() === 'ja' || (Cookies.get('residence') === 'jp') || localStorage.getItem('clients_country') === 'jp');
+}
+
+module.exports = {
+    checkClientsCountry: checkClientsCountry,
+    japanese_client    : japanese_client,
+};
 
 ;function format_money(currency, amount) {
     var symbol = format_money.map[currency];
