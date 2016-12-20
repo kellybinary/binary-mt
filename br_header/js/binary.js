@@ -17409,10 +17409,6 @@ function map_code_to_language(code) {
     return map[code];
 }
 
-module.exports = {
-    create_language_drop_down: create_language_drop_down,
-};
-
 ;var CommonData = {
     getLoginToken: function() { return Cookies.get('login'); }
 };
@@ -17708,8 +17704,7 @@ pjax_config_page("/terms-and-conditions", function() {
     };
 });
 
-;var create_language_drop_down = require('../common_functions/attach_dom/language_dropdown').create_language_drop_down;
-/*
+;/*
  * It provides a abstraction layer over native javascript Websocket.
  *
  * Provide additional functionality like if connection is close, open
