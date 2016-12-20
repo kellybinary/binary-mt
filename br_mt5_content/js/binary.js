@@ -18280,9 +18280,9 @@ var BinarySocket = new BinarySocketClass();
             findInSection(accType, '.authenticate').addClass(hiddenClass);
             if(page.client.is_virtual()) {
                 $accordion.addClass(hiddenClass);
-                $('.msg-switch-to-deposit').removeClass(hiddenClass);
+                $form.find('.msg-switch-to-deposit').removeClass(hiddenClass);
             } else {
-                $('.msg-switch-to-deposit').addClass(hiddenClass);
+                $form.find('.msg-switch-to-deposit').addClass(hiddenClass);
                 ['.form-deposit', '.form-withdrawal'].map(function(formClass){
                     $form = findInSection(accType, formClass);
                     $form.find('.binary-login').text(page.client.loginid);
