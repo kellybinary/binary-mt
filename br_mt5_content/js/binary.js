@@ -18448,8 +18448,10 @@ var BinarySocket = new BinarySocketClass();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
                         if (/volatility/.test(accType)) {
-                            $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)) + 'Indices');
-                        } else $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
+                            $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)) + ' Indices');
+                        } else {
+                            $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
+                        }
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
                     }
