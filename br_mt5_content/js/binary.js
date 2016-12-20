@@ -18426,7 +18426,7 @@ var BinarySocket = new BinarySocketClass();
                 // check if this client has real binary account
                 if(page.client.is_virtual()) {
                     console.log('yes');
-                }
+                } else {
                 findInSection(accType, '.form-new-account').addClass(hiddenClass);
                 var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
                 var $details = $('<div/>').append($(
@@ -18446,7 +18446,9 @@ var BinarySocket = new BinarySocketClass();
                             '<div class="google-play-badge"></div>' +
                         '</a></div>')
                 ));
-                findInSection(accType, '.account-details').html($details.html());
+                findInSection(accType, '.account-details').html($details.html());    
+                }
+                
             }
         } else if(/financial|volatility/.test(accType)) {
             if(!mt5Accounts.hasOwnProperty(accType)) {
