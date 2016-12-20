@@ -16479,6 +16479,7 @@ Header.prototype = {
     show_or_hide_login_form: function() {
         if (!this.user.is_logged_in || !this.client.is_logged_in) return;
         var all_accounts = $('#all-accounts');
+        language = $('#select_language');
         var that = this;
         $('.nav-menu').unbind('click').on('click', function(event) {
             event.stopPropagation();
@@ -16489,9 +16490,7 @@ Header.prototype = {
                 that.animate_appear(all_accounts);
             }
         });
-        $(document).unbind('click').on('click', function() {
-            that.animate_disappear(all_accounts);
-        });
+
         var loginid_select = '';
         var loginid_array = this.user.loginid_array;
         for (var i=0; i < loginid_array.length; i++) {
@@ -16747,7 +16746,6 @@ Page.prototype = {
         this.url.reset();
         this.localize_for(this.language());
         this.header.on_load();
-        this.on_change_language();
         this.on_change_loginid();
         this.contents.on_load();
         if (CommonData.getLoginToken()) {
