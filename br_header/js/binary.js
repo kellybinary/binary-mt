@@ -16706,9 +16706,7 @@ var Page = function(config) {
 
 Page.prototype = {
     all_languages: function() {
-      //  return ['EN', 'AR', 'DE', 'ES', 'FR', 'ID', 'IT', 'PL', 'PT', 'RU', 'VI', 'ZH_CN', 'ZH_TW', 'ACH']; // ACH is a pseudo language used for in-context translation
-           return {
-            ACH  : 'Translation',
+        return {
             EN   : 'English',
             DE   : 'Deutsch',
             ES   : 'Español',
@@ -16763,6 +16761,7 @@ Page.prototype = {
             sessionStorage.removeItem('showLoginPage');
             Login.redirect_to_login();
         }
+        BinarySocket.init();
     },
     on_unload: function() {
         this.header.on_unload();
@@ -17499,6 +17498,53 @@ function addComma(num){
     return num.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// use function to generate elements and append them
+// e.g. element is select and element to append is option
+function appendTextValueChild(element, text, value, disabled, el_class){
+    var option = document.createElement("option");
+    option.text = text;
+    if (value) {
+        option.value = value;
+    }
+    if (disabled === 'disabled') {
+      option.setAttribute('disabled', 'disabled');
+    }
+    if (el_class) {
+      option.className = el_class;
+    }
+    element.appendChild(option);
+    return;
+}
+
+function create_language_drop_down(languages) {
+    var language_select_element = document.getElementById('language_select');
+    languages.sort(function(a, b) {
+        if (a === 'EN' || a < b) {
+            return -1;
+        } else {
+            return 1;
+        }
+    });
+    for (var i = 0; i < languages.length; i++) {
+        if (languages[i] !== 'JA') {
+            appendTextValueChild(language_select_element, map_code_to_language(languages[i]), '', '', languages[i]);
+        }
+    }
+    $('#language_select .' + page.language()).attr('selected', 'selected');
+    $('#language_select').removeClass('invisible');
+}
+
+function map_code_to_language(code) {
+    var map = page.all_languages();
+    return map[code];
+}
+
+module.exports = {
+    appendTextValueChild     : appendTextValueChild,
+	create_language_drop_down: create_language_drop_down,
+	map_code_to_language     : map_code_to_language,
+};
+
 ;var SessionDurationLimit = (function() {
     'use strict';
 
@@ -17731,7 +17777,10 @@ function BinarySocketClass() {
             }
 
             if (isReady()) {
-                if (!Login.is_login_pages()) page.header.validate_cookies();
+                if (!Login.is_login_pages()) {
+                    page.header.validate_cookies();
+                    binarySocket.send(JSON.stringify({ website_status: 1 }));
+                }
                 if (!clock_started) page.header.start_clock_ws();
             }
         };
@@ -17794,6 +17843,7 @@ function BinarySocketClass() {
                     page.client.check_tnc();
                 } else if (type === 'website_status') {
                     if(!response.hasOwnProperty('error')) {
+                        create_language_drop_down(response.website_status.supported_languages);
                         LocalStore.set('website.tnc_version', response.website_status.terms_conditions_version);
                         page.client.check_tnc();
                         if (response.website_status.hasOwnProperty('clients_country')) {
@@ -18267,6 +18317,7 @@ var BinarySocket = new BinarySocketClass();
         clearError();
         if($('#section-financial .form-new-account').contents().length === 0) {
             findInSection('demo', '.form-new-account').contents().clone().appendTo('#section-financial .form-new-account');
+            findInSection('demo', '.form-new-account .tnc-row').remove();
             if(hasGamingCompany) {
                 $('#section-financial').contents().clone().appendTo('#section-volatility');
                 $('#section-volatility > h3').text(text.localize('Volatility Indices Account'));
@@ -18277,6 +18328,9 @@ var BinarySocket = new BinarySocketClass();
             if(!hasFinancialCompany) {
                 hideAccount('financial');
             }
+            $('.tnc-row').removeClass(hiddenClass).find('label').each(function() {
+                $(this).click(function() { $(this).siblings('.chkTNC').click(); });
+            });
         }
 
         MetaTraderData.requestLoginList();
@@ -18723,6 +18777,14 @@ var BinarySocket = new BinarySocketClass();
                 var errMsgName = MetaTrader.validateName($form.find('.txtName').val());
                 if(errMsgName) {
                     showError('.txtName', errMsgName);
+                    isValid = false;
+                }
+            }
+            // tnc
+            var $tncRow = $form.find('.tnc-row');
+            if($tncRow.length && !$tncRow.hasClass(hiddenClass)) {
+                if(!$form.find('.chkTNC:checked').length) {
+                    showError('.chkTNC', Content.errorMessage('req'));
                     isValid = false;
                 }
             }
