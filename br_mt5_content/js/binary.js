@@ -16152,9 +16152,9 @@ Client.prototype = {
                     '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])}))
                 .prepend($('<h3/>', {class: '', html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account.') + '<br />'}))
                 .prepend($('<h1/>', {class: '', html: text.localize('Start trading Forex and CFDs with Binary.com')}))
-                .append($('<p/>', {class:'', html: text.localize('Dont have a Binary.com account? <a href="[_1]"> [_2] </a> now', [page.url.url_for('new_account/virtualws', '', true), 'Create one'])}));
+                .append($('<p/>', {class:'', html: text.localize('Dont have a Binary.com account? <a href="[_1]"> [_2] </a> now', [
+                    page.url.url_for('new_account/realws', '', true), 'Create one'])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
-            //$('.main_link').click(function(){});
         }
         return !this.is_logged_in;
     },
