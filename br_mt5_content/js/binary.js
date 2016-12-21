@@ -16154,7 +16154,7 @@ Client.prototype = {
             $('#content > .container').addClass('center-text')
                 .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
                         '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
-                    ])}).append($('<p/>', {class:'', html: text.localize('Dont have a Binary.com account? [_2] now', ['<a class="" href="javascript:;">'+ text.localize('Create one') +'</a>'])})));
+                    ])}).append($('<p/>', {class:'', html: text.localize('Dont have a Binary.com account? [_1] now', ['<a class="" href="javascript:;">'+ text.localize('Create one') +'</a>'])})));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
