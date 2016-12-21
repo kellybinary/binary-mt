@@ -16150,7 +16150,7 @@ Client.prototype = {
             $('#content > .container').addClass('center-text')
                 .html($('<p/>', { class: 'notice-msg', html : text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account', [
                     '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])}))
-                .prepend($('<h3/>', {class: '', html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account.') + '<br />'}))
+                .prepend($('<h3/>', {class: '', html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account') + '<br />'}))
                 .prepend($('<h1/>', {class: '', html: text.localize('Start trading Forex and CFDs with Binary.com')}))
                 .append($('<p/>', {class:'', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]"> [_2] </a> now', [
                     page.url.url_for('new_account/realws', '', true), text.localize('Create one')])}));
