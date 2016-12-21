@@ -16152,9 +16152,9 @@ Client.prototype = {
             // $('#metatrader p').addClass('center-text')
             //     .html(text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account.'));
             $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
-                        '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
-                    ])}).append($('<p/>', text.localize('Dont have a Binary.com account? [_1] now', ['<a class="" href="javascript:;">'+ text.localize('Create one') +'</a>']))));
+                .prepend($('<h1/>', text.localize('demo')))
+                .html($('<p/>', { class: 'notice-msg', html : text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', ['<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])})
+                  .append($('<p/>', {class:'', html: text.localize('Dont have a Binary.com account? [_1] now', ['<a class="" href="javascript:;">'+ text.localize('Create one') +'</a>'])})));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
