@@ -15899,7 +15899,7 @@ texts_json['ACH'] = {};
  */
 
 function getAppId() {
-  return localStorage.getItem('config.1440') ? localStorage.getItem('config.1440') : '1288';
+  return localStorage.getItem('config.app_id') ? localStorage.getItem('config.app_id') : '1288';
 }
 
 function getSocketURL() {
@@ -16150,10 +16150,10 @@ Client.prototype = {
             $('#content > .container').addClass('center-text')
                 .html($('<p/>', { class: 'notice-msg', html : text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account', [
                     '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])}))
-                .prepend($('<h3/>', {class: '', html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account')}))
-                .prepend($('<h1/>', {class: '', html: text.localize('Start trading Forex and CFDs with Binary.com')}))
-                .append($('<p/>', {class:'notice-msg', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]"> [_2] </a> now', [
-                    page.url.url_for('home', '', true), text.localize('Create one')])}));
+                .prepend($('<h3/>', { html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account')}))
+                .prepend($('<h1/>', { html: text.localize('Start trading Forex and CFDs with Binary.com')}))
+                .append($('<p/>', {class:'notice-msg', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]">Create one</a> now', [
+                    page.url.url_for('home', '', true)])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
@@ -18193,7 +18193,12 @@ var BinarySocket = new BinarySocketClass();
         currency,
         highlightBalance,
         mt5Logins,
-        mt5Accounts;
+        mt5Accounts,
+        accountDisplayName = {
+            volatility: 'Volatility Indices',
+            financial : 'Financial',
+            demo      : 'Demo',
+        };
 
     var init = function() {
         MetaTraderData.initSocket();
@@ -18436,8 +18441,8 @@ var BinarySocket = new BinarySocketClass();
                     });
 
                     findInSection(accType, '.msg-account').html(hasRealBinaryAccount ? 
-                        text.localize('To create a ' + (/financial/.test(accType) ? 'Financial' : 'Volatility Indices') + ' Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
-                        text.localize('To create a ' + (/financial/.test(accType) ? 'Financial' : 'Volatility Indices') + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
                     if(/financial/.test(accType) && !isAuthenticated) {
@@ -18446,11 +18451,7 @@ var BinarySocket = new BinarySocketClass();
                         MetaTraderData.requestFinancialAssessment();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
-                        if (/volatility/.test(accType)) {
-                            $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)) + ' Indices');
-                        } else {
-                            $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
-                        }
+                        $form.find('.account-type').text(text.localize(accountDisplayName[accType]));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
                     }
@@ -18561,7 +18562,7 @@ var BinarySocket = new BinarySocketClass();
         if (new_type === 'gaming') new_type = 'volatility';
         mt5Logins[new_login] = new_type;
         MetaTraderData.requestLoginDetails(new_login);
-        showAccountMessage(new_type, text.localize('Congratulations! Your Volatility Indices Account has been created.'));
+        showAccountMessage(new_type, text.localize('Congratulations! Your ' + accountDisplayName[new_type] + ' Account has been created.'));
 
         // Update mt5_logins in localStorage
         var mt5_logins = JSON.parse(page.client.get_storage_value('mt5_logins') || '{}');
