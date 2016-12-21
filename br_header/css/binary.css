@@ -403,7 +403,6 @@ body #topbar #display_language li:first-child {
 }
 #header #client-logged-out #btn_login {
   margin-bottom: 0;
-  margin-left: 0;
 }
 #header #mobile-menu-icon img {
   max-width: 32px;
