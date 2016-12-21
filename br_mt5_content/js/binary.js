@@ -16147,17 +16147,15 @@ var Client = function() {
 Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
-            $('#metatrader h1').addClass('center-text')
-                .html(text.localize('Start trading Forex and CFDs with Binary.com'));
-            $('#metatrader p').addClass('center-text')
-                .html(text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account.'));
+            // $('#metatrader h1').addClass('center-text')
+            //     .html(text.localize('Start trading Forex and CFDs with Binary.com') + '[_1]');
+            // $('#metatrader p').addClass('center-text')
+            //     .html(text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account.'));
             $('#content > .container').addClass('center-text')
-                .html($('<h1/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
-                        '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
-                    ])}))
                 .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
                         '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
-                    ])}));
+                    ])}) +
+                       $('<p/>', {class:'notice-msg', html: text.localize('asdasd')}));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
