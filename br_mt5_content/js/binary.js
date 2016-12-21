@@ -16147,10 +16147,12 @@ var Client = function() {
 Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
-            $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
-                        '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
-                    ])}));
+            $('#metatrader h1').addClass('center-text')
+                .html('hello world');
+            // $('#content > .container').addClass('center-text')
+            //     .html($('<p/>', {class: 'notice-msg', html: text.localize('[_1] to your Binary.com account to create a MetaTrader 5 account.', [
+            //             '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'
+            //         ])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
