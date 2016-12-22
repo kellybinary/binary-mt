@@ -18445,16 +18445,16 @@ var BinarySocket = new BinarySocketClass();
                         text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
-                    if(/financial/.test(accType) && !isAuthenticated) {
-                        MetaTraderData.requestAccountStatus();
-                    } else if(/financial/.test(accType) && !isAssessmentDone) {
-                        MetaTraderData.requestFinancialAssessment();
-                    } else {
+                    // if(/financial/.test(accType) && !isAuthenticated) {
+                    //     MetaTraderData.requestAccountStatus();
+                    // } else if(/financial/.test(accType) && !isAssessmentDone) {
+                    //     MetaTraderData.requestFinancialAssessment();
+                    // } else {
                         $form = findInSection(accType, '.form-new-account');
                         $form.find('.account-type').text(text.localize(accountDisplayName[accType]));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
-                    }
+                    // }
                 }
             }
         }
