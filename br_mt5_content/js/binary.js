@@ -18202,7 +18202,6 @@ var BinarySocket = new BinarySocketClass();
         marketDisplayName = {
             volatility: 'Volatility Indices',
             financial: 'Forex',
-            demo: '',
         };
 
     var init = function() {
