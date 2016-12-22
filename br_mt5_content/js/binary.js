@@ -18198,6 +18198,10 @@ var BinarySocket = new BinarySocketClass();
             volatility: 'Volatility Indices',
             financial : 'Financial',
             demo      : 'Demo',
+        },
+        marketDisplayName = {
+            volatility: 'Volatility Indices',
+            financial: 'Forex',
         };
 
     var init = function() {
@@ -18451,6 +18455,7 @@ var BinarySocket = new BinarySocketClass();
                     //     MetaTraderData.requestFinancialAssessment();
                     // } else {
                         $form = findInSection(accType, '.form-new-account');
+                        $form.find('.account-msg').text(text.localize('Create a ' + accountDisplayName[accType] + ' Account to trade ' + marketDisplayName[accType] + ' on MT5.'));
                         $form.find('.account-type').text(text.localize(accountDisplayName[accType]));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
