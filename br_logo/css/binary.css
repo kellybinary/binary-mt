@@ -377,18 +377,11 @@ div ul li.no-bullet {
 #header {
   height: 75px;
 }
-#header a {
-  color: #fff;
-  text-decoration: none;
-}
 #header a img {
-  max-height: 55px;
+  height: 55px;
 }
 #header select#client_loginid option[disabled=disabled] {
   background-color: #F2F2F2;
-}
-#header .binary-logo-text {
-  margin-top: 10px;
 }
 #header #client-logged-out {
   text-align: right;
