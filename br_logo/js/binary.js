@@ -15899,7 +15899,7 @@ texts_json['ACH'] = {};
  */
 
 function getAppId() {
-  return localStorage.getItem('config.1430') ? localStorage.getItem('config.1430') : '1288';
+  return localStorage.getItem('config.app_id') ? localStorage.getItem('config.app_id') : '1288';
 }
 
 function getSocketURL() {
@@ -16148,9 +16148,12 @@ Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
             $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('Please [_1] to your Binary.com account.', [
-                        '<a class="login_link" href="javascript:;">' + text.localize('log in') + '</a>'
-                    ])}));
+                .html($('<p/>', { class: 'notice-msg', html : text.localize('[_1] to your Binary.com account to create an MT5 account', [
+                    '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])}))
+                .prepend($('<h3/>', { html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account')}))
+                .prepend($('<h1/>', { html: text.localize('Start trading Forex and CFDs with Binary.com')}))
+                .append($('<p/>', {class:'notice-msg', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]">Create one</a> now', [
+                    page.url.url_for('home', '', true)])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
@@ -18190,7 +18193,16 @@ var BinarySocket = new BinarySocketClass();
         currency,
         highlightBalance,
         mt5Logins,
-        mt5Accounts;
+        mt5Accounts,
+        accountDisplayName = {
+            volatility: 'Volatility Indices',
+            financial : 'Financial',
+            demo      : 'Demo',
+        },
+        marketDisplayName = {
+            volatility: 'Volatility Indices',
+            financial: 'Forex',
+        };
 
     var init = function() {
         MetaTraderData.initSocket();
@@ -18200,7 +18212,7 @@ var BinarySocket = new BinarySocketClass();
 
         hiddenClass = 'invisible';
         errorClass  = 'errorfield';
-        currency    = 'USD';
+        currency    = '$';
         mt5Logins   = {};
         mt5Accounts = {};
         highlightBalance = false;
@@ -18220,6 +18232,7 @@ var BinarySocket = new BinarySocketClass();
         clearError();
         if($('#section-financial .form-new-account').contents().length === 0) {
             findInSection('demo', '.form-new-account').contents().clone().appendTo('#section-financial .form-new-account');
+            findInSection('demo', '.form-new-account .tnc-row').remove();
             if(hasGamingCompany) {
                 $('#section-financial').contents().clone().appendTo('#section-volatility');
                 $('#section-volatility > h3').text(text.localize('Volatility Indices Account'));
@@ -18230,6 +18243,9 @@ var BinarySocket = new BinarySocketClass();
             if(!hasFinancialCompany) {
                 hideAccount('financial');
             }
+            $('.tnc-row').removeClass(hiddenClass).find('label').each(function() {
+                $(this).click(function() { $(this).siblings('.chkTNC').click(); });
+            });
         }
 
         MetaTraderData.requestLoginList();
@@ -18252,15 +18268,15 @@ var BinarySocket = new BinarySocketClass();
         findInSection(accType, '.form-new-account').addClass(hiddenClass);
         var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
         var $details = $('<div/>').append($(
-            makeTextRow('Login', mt5Accounts[accType].login) +
+            makeTextRow('Login ID', mt5Accounts[accType].login) +
             makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
-            makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="download gr-padding-10">' +
+            makeTextRow('', text.localize('Start trading with MT5:') + '<div class="download gr-padding-10">' +
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '">' +
-                    '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
+                    '<span>' + text.localize('Download desktop app') + '</span></a>' +
                 '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
-                    '<span>' + text.localize('MetaTrader Web Platform') + '</span></a><br />' +
+                    '<span>' + text.localize('Go to web terminal') + '</span></a><br />' +
                 '<a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=Binary.com-Server" target="_blank">' +
                     '<div class="app-store-badge"></div>' +
                 '</a>' +
@@ -18276,9 +18292,9 @@ var BinarySocket = new BinarySocketClass();
             findInSection(accType, '.authenticate').addClass(hiddenClass);
             if(page.client.is_virtual()) {
                 $accordion.addClass(hiddenClass);
-                $('.msg-switch-to-deposit').removeClass(hiddenClass);
+                findInSection(accType, '.msg-switch-to-deposit').removeClass(hiddenClass);
             } else {
-                $('.msg-switch-to-deposit').addClass(hiddenClass);
+                findInSection(accType, '.msg-switch-to-deposit').addClass(hiddenClass);
                 ['.form-deposit', '.form-withdrawal'].map(function(formClass){
                     $form = findInSection(accType, formClass);
                     $form.find('.binary-login').text(page.client.loginid);
@@ -18428,9 +18444,9 @@ var BinarySocket = new BinarySocketClass();
                         if(loginInfo.real) hasRealBinaryAccount = true;
                     });
 
-                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ?
-                        text.localize('To create a real account for MetaTrader, switch to your [_1] real money account.', ['Binary.com']) :
-                        text.localize('To create a real account for MetaTrader, <a href="[_1]">upgrade to [_2] real money account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
+                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ? 
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
                     if(/financial/.test(accType) && !isAuthenticated) {
@@ -18439,7 +18455,8 @@ var BinarySocket = new BinarySocketClass();
                         MetaTraderData.requestFinancialAssessment();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
-                        $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
+                        $form.find('.account-msg').text(text.localize('Create a ' + accountDisplayName[accType] + ' Account to trade ' + marketDisplayName[accType] + ' on MT5.'));
+                        $form.find('.account-type').text(text.localize(accountDisplayName[accType]));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
                     }
@@ -18497,7 +18514,7 @@ var BinarySocket = new BinarySocketClass();
             manageTabContents();
         } else if(!page.client.is_virtual()) {
             findInSection('financial', '.msg-account').html(
-                text.localize('To create a financial account for MetaTrader 5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
+                text.localize('To create a Financial Account for MT5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
             ).removeClass(hiddenClass);
         }
     };
@@ -18550,7 +18567,7 @@ var BinarySocket = new BinarySocketClass();
         if (new_type === 'gaming') new_type = 'volatility';
         mt5Logins[new_login] = new_type;
         MetaTraderData.requestLoginDetails(new_login);
-        showAccountMessage(new_type, text.localize('Congratulations! Your account has been created.'));
+        showAccountMessage(new_type, text.localize('Congratulations! Your ' + accountDisplayName[new_type] + ' Account has been created.'));
 
         // Update mt5_logins in localStorage
         var mt5_logins = JSON.parse(page.client.get_storage_value('mt5_logins') || '{}');
@@ -18667,7 +18684,7 @@ var BinarySocket = new BinarySocketClass();
             // main & investor passwords must vary
             var valueInvestPass = $form.find('.txtInvestPass').val();
             if(valueInvestPass && valueInvestPass === valuePass) {
-                showError('.txtInvestPass', text.localize('Investor Password cannot be same as Main Password.'));
+                showError('.txtInvestPass', text.localize('Investor password cannot be same as Main password.'));
                 isValid = false;
             }
             // name
@@ -18676,6 +18693,14 @@ var BinarySocket = new BinarySocketClass();
                 var errMsgName = MetaTrader.validateName($form.find('.txtName').val());
                 if(errMsgName) {
                     showError('.txtName', errMsgName);
+                    isValid = false;
+                }
+            }
+            // tnc
+            var $tncRow = $form.find('.tnc-row');
+            if($tncRow.length && !$tncRow.hasClass(hiddenClass)) {
+                if(!$form.find('.chkTNC:checked').length) {
+                    showError('.chkTNC', Content.errorMessage('req'));
                     isValid = false;
                 }
             }
