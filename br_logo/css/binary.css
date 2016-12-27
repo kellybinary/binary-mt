@@ -323,17 +323,14 @@ div ul li.no-bullet {
 /* main style */
 /* Logo and top bar */
 #topbar {
-  text-align: right;
+  height: 20px;
+  line-height: 20px !important;
 }
 #topbar #virtual-text {
   font-weight: 700;
 }
 #topbar #topbar-info {
   margin-left: auto;
-  height: 23px;
-}
-#topbar #topbar-info > div {
-  height: 23px;
 }
 #topbar #gmt-clock, #topbar #contact-us, #topbar .upgrademessage {
   -webkit-align-self: center;
@@ -341,10 +338,8 @@ div ul li.no-bullet {
           align-self: center;
 }
 #topbar #gmt-clock {
-  white-space: nowrap;
-}
-#topbar .upgrademessage {
-  text-align: center;
+  display: inline-block;
+  min-width: 210px;
 }
 #topbar .upgrademessage a {
   color: #fff;
@@ -370,32 +365,30 @@ div ul li.no-bullet {
   text-decoration: none;
   background-color: #14602B;
 }
+#topbar #language_select select {
+  padding: 0px;
+}
 #topbar a {
   color: #fff;
   white-space: nowrap;
   text-decoration: none;
 }
-#topbar #select_language {
-  top: -3px;
-}
-#topbar #display_language li:first-child {
-  margin-top: 0;
-}
 
 #header {
   height: 75px;
 }
+#header a {
+  color: #fff;
+  text-decoration: none;
+}
 #header a img {
-  height: 55px;
+  max-height: 55px;
 }
 #header select#client_loginid option[disabled=disabled] {
   background-color: #F2F2F2;
 }
-#header #binary-logo-text {
-  margin-top: 0 !important;
-}
-#header #binary-logo-text img {
-  width: 90%;
+#header .binary-logo-text {
+  margin-top: 10px;
 }
 #header #client-logged-out {
   text-align: right;
@@ -433,12 +426,15 @@ div ul li.no-bullet {
   display: table-cell;
   height: 50px;
   max-width: 110px;
+  color: #fff;
   text-decoration: none;
   letter-spacing: 0;
   text-transform: capitalize;
   padding: 0px 10px;
   word-wrap: break-word;
-  color: #fff;
+}
+#header #menu-top li.active a {
+  color: #e98024;
 }
 #header .main-nav > li > ul {
   margin: -20px -1px;
