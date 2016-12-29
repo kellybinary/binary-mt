@@ -16153,7 +16153,7 @@ Client.prototype = {
                     '<a class="login_link" href="javascript:;">' + text.localize('log in') + '</a>' , page.url.url_for('home', '', true)])}))
                 .prepend($('<h3/>', { html: text.localize('Take advantage of MT5’s advanced features and tools for a complete trading experience.')}))
                 .prepend($('<h1/>', { html: text.localize('Start trading Forex and CFDs with MetaTrader 5')}));
-                
+
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
@@ -16705,7 +16705,7 @@ var Page = function(config) {
     this._lang = null;
     onLoad.queue(GTM.push_data_layer);
     $('#logo').on('click', function() {
-        load_with_pjax(page.url.url_for(page.client.is_logged_in ? 'metatrader' : ''));
+        load_with_pjax(page.url.url_for(page.client.is_logged_in ? 'user/settings/metatrader' : ''));
     });
 };
 
