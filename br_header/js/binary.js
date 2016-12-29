@@ -16705,7 +16705,7 @@ var Page = function(config) {
     this._lang = null;
     onLoad.queue(GTM.push_data_layer);
     $('#logo').on('click', function() {
-        load_with_pjax(page.url.url_for(page.client.is_logged_in ? 'user/account/settings/metatrader' : ''));
+        load_with_pjax(page.url.url_for(page.client.is_logged_in ? 'metatrader' : ''));
     });
 };
 
