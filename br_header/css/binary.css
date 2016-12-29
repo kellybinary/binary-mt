@@ -399,8 +399,12 @@ body #topbar #display_language li:first-child {
 #header #binary-logo-text img {
   width: 90%;
 }
+#header #client-logged-in {
+  margin-left: auto !important;
+}
 #header #client-logged-out {
   text-align: right;
+  margin-left: auto !important;
 }
 #header #client-logged-out #btn_login {
   margin-bottom: 0;
