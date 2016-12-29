@@ -12469,100 +12469,6 @@ return jQuery;
 
 }(this));
 
-;// jQuery.XDomainRequest.js
-// Author: Jason Moon - @JSONMOON
-// IE8+
-(function($){
-
-if (!$.support.cors && $.ajaxTransport && window.XDomainRequest) {
-  var httpRegEx = /^https?:\/\//i;
-  var getOrPostRegEx = /^get|post$/i;
-  var sameSchemeRegEx = new RegExp('^'+location.protocol, 'i');
-  var htmlRegEx = /text\/html/i;
-  var jsonRegEx = /\/json/i;
-  var xmlRegEx = /\/xml/i;
-  
-  // ajaxTransport exists in jQuery 1.5+
-  $.ajaxTransport('* text html xml json', function(options, userOptions, jqXHR){
-    // XDomainRequests must be: asynchronous, GET or POST methods, HTTP or HTTPS protocol, and same scheme as calling page
-    if (options.crossDomain && options.async && getOrPostRegEx.test(options.type) && httpRegEx.test(options.url) && sameSchemeRegEx.test(options.url)) {
-      var xdr = null;
-      var userType = (userOptions.dataType||'').toLowerCase();
-      return {
-        send: function(headers, complete){
-          xdr = new XDomainRequest();
-          if (/^\d+$/.test(userOptions.timeout)) {
-            xdr.timeout = userOptions.timeout;
-          }
-          xdr.ontimeout = function(){
-            complete(500, 'timeout');
-          };
-          xdr.onload = function(){
-            var allResponseHeaders = 'Content-Length: ' + xdr.responseText.length + '\r\nContent-Type: ' + xdr.contentType;
-            var status = {
-              code: 200,
-              message: 'success'
-            };
-            var responses = {
-              text: xdr.responseText
-            };
-            try {
-              if (userType === 'html' || htmlRegEx.test(xdr.contentType)) {
-                responses.html = xdr.responseText;
-              } else if (userType === 'json' || (userType !== 'text' && jsonRegEx.test(xdr.contentType))) {
-                try {
-                  responses.json = $.parseJSON(xdr.responseText);
-                } catch(e) {
-                  status.code = 500;
-                  status.message = 'parseerror';
-                  //throw 'Invalid JSON: ' + xdr.responseText;
-                }
-              } else if (userType === 'xml' || (userType !== 'text' && xmlRegEx.test(xdr.contentType))) {
-                var doc = new ActiveXObject('Microsoft.XMLDOM');
-                doc.async = false;
-                try {
-                  doc.loadXML(xdr.responseText);
-                } catch(e) {
-                  doc = undefined;
-                }
-                if (!doc || !doc.documentElement || doc.getElementsByTagName('parsererror').length) {
-                  status.code = 500;
-                  status.message = 'parseerror';
-                  throw 'Invalid XML: ' + xdr.responseText;
-                }
-                responses.xml = doc;
-              }
-            } catch(parseMessage) {
-              throw parseMessage;
-            } finally {
-              complete(status.code, status.message, responses, allResponseHeaders);
-            }
-          };
-          // set an empty handler for 'onprogress' so requests don't get aborted
-          xdr.onprogress = function(){};
-          xdr.onerror = function(){
-            complete(500, 'error', {
-              text: xdr.responseText
-            });
-          };
-          var postData = '';
-          if (userOptions.data) {
-            postData = ($.type(userOptions.data) === 'string') ? userOptions.data : $.param(userOptions.data);
-          }
-          xdr.open(options.type, options.url);
-          xdr.send(postData);
-        },
-        abort: function(){
-          if (xdr) {
-            xdr.abort();
-          }
-        }
-      };
-    }
-  });
-}
-
-})(jQuery);
 ;/*! jQuery UI - v1.11.0 - 2014-08-11
 * http://jqueryui.com
 * Includes: core.js, widget.js, mouse.js, draggable.js, datepicker.js
@@ -14155,6 +14061,100 @@ var accordion = $.widget( "ui.accordion", {
 
 }));
 
+;// jQuery.XDomainRequest.js
+// Author: Jason Moon - @JSONMOON
+// IE8+
+(function($){
+
+if (!$.support.cors && $.ajaxTransport && window.XDomainRequest) {
+  var httpRegEx = /^https?:\/\//i;
+  var getOrPostRegEx = /^get|post$/i;
+  var sameSchemeRegEx = new RegExp('^'+location.protocol, 'i');
+  var htmlRegEx = /text\/html/i;
+  var jsonRegEx = /\/json/i;
+  var xmlRegEx = /\/xml/i;
+  
+  // ajaxTransport exists in jQuery 1.5+
+  $.ajaxTransport('* text html xml json', function(options, userOptions, jqXHR){
+    // XDomainRequests must be: asynchronous, GET or POST methods, HTTP or HTTPS protocol, and same scheme as calling page
+    if (options.crossDomain && options.async && getOrPostRegEx.test(options.type) && httpRegEx.test(options.url) && sameSchemeRegEx.test(options.url)) {
+      var xdr = null;
+      var userType = (userOptions.dataType||'').toLowerCase();
+      return {
+        send: function(headers, complete){
+          xdr = new XDomainRequest();
+          if (/^\d+$/.test(userOptions.timeout)) {
+            xdr.timeout = userOptions.timeout;
+          }
+          xdr.ontimeout = function(){
+            complete(500, 'timeout');
+          };
+          xdr.onload = function(){
+            var allResponseHeaders = 'Content-Length: ' + xdr.responseText.length + '\r\nContent-Type: ' + xdr.contentType;
+            var status = {
+              code: 200,
+              message: 'success'
+            };
+            var responses = {
+              text: xdr.responseText
+            };
+            try {
+              if (userType === 'html' || htmlRegEx.test(xdr.contentType)) {
+                responses.html = xdr.responseText;
+              } else if (userType === 'json' || (userType !== 'text' && jsonRegEx.test(xdr.contentType))) {
+                try {
+                  responses.json = $.parseJSON(xdr.responseText);
+                } catch(e) {
+                  status.code = 500;
+                  status.message = 'parseerror';
+                  //throw 'Invalid JSON: ' + xdr.responseText;
+                }
+              } else if (userType === 'xml' || (userType !== 'text' && xmlRegEx.test(xdr.contentType))) {
+                var doc = new ActiveXObject('Microsoft.XMLDOM');
+                doc.async = false;
+                try {
+                  doc.loadXML(xdr.responseText);
+                } catch(e) {
+                  doc = undefined;
+                }
+                if (!doc || !doc.documentElement || doc.getElementsByTagName('parsererror').length) {
+                  status.code = 500;
+                  status.message = 'parseerror';
+                  throw 'Invalid XML: ' + xdr.responseText;
+                }
+                responses.xml = doc;
+              }
+            } catch(parseMessage) {
+              throw parseMessage;
+            } finally {
+              complete(status.code, status.message, responses, allResponseHeaders);
+            }
+          };
+          // set an empty handler for 'onprogress' so requests don't get aborted
+          xdr.onprogress = function(){};
+          xdr.onerror = function(){
+            complete(500, 'error', {
+              text: xdr.responseText
+            });
+          };
+          var postData = '';
+          if (userOptions.data) {
+            postData = ($.type(userOptions.data) === 'string') ? userOptions.data : $.param(userOptions.data);
+          }
+          xdr.open(options.type, options.url);
+          xdr.send(postData);
+        },
+        abort: function(){
+          if (xdr) {
+            xdr.abort();
+          }
+        }
+      };
+    }
+  });
+}
+
+})(jQuery);
 ;/*!
  * JavaScript Cookie v2.1.2
  * https://github.com/js-cookie/js-cookie
@@ -15878,15 +15878,15 @@ texts_json['EN'] = {};
 texts_json['DE'] = {};
 texts_json['ES'] = {};
 texts_json['FR'] = {};
-texts_json['ID'] = {};
+texts_json['ID'] = {"Name":"Nama","Balance":"Saldo","Log_in":"Masuk","Please_select_a_value":"Silakan pilih nilai","Deposit_is_done__Transaction_ID:_[_1]":"Deposit selesai. ID transaksi: [_1]","Volatility_Indices":"Indeks Volatilitas"};
 texts_json['IT'] = {};
 texts_json['PL'] = {};
 texts_json['PT'] = {};
-texts_json['RU'] = {};
+texts_json['RU'] = {"Volatility_Indices_Account":"Счёт на индексах волатильности","Log_in":"Вход","Volatility_Indices":"Индексы волатильности","Name":"Имя","Balance":"Баланс","Demo":"Демо"};
 texts_json['TH'] = {};
 texts_json['VI'] = {};
-texts_json['ZH_CN'] = {};
-texts_json['ZH_TW'] = {};
+texts_json['ZH_CN'] = {"Financial":"金融","Balance":"余额","Demo":"演示","Deposit_is_done__Transaction_ID:_[_1]":"已完成存款。交易编号: [_1]","Please_select_a_value":"请选择数值","Name":"姓名","Log_in":"登录","Please_contact_<a_href=\"[_1]\">Customer_Support</a>_":"请联系<a href=\"[_1]\">客服部</a>。"};
+texts_json['ZH_TW'] = {"Please_contact_<a_href=\"[_1]\">Customer_Support</a>_":"請聯繫<a href=\"[_1]\">客服部</a>。","Log_in":"登入","Name":"姓名","Please_select_a_value":"請選擇數值","Deposit_is_done__Transaction_ID:_[_1]":"已完成存款。交易編號: [_1]","Balance":"餘額","Demo":"示範","Financial":"金融"};
 texts_json['ACH'] = {};
 
 ;/*
@@ -16148,9 +16148,12 @@ Client.prototype = {
     show_login_if_logout: function(shouldReplacePageContents) {
         if (!this.is_logged_in && shouldReplacePageContents) {
             $('#content > .container').addClass('center-text')
-                .html($('<p/>', {class: 'notice-msg', html: text.localize('Please [_1] to your Binary.com account.', [
-                        '<a class="login_link" href="javascript:;">' + text.localize('log in') + '</a>'
-                    ])}));
+                .html($('<p/>', { class: 'notice-msg', html : text.localize('[_1] to your Binary.com account to create an MT5 account', [
+                    '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'])}))
+                .prepend($('<h3/>', { html: text.localize('Your existing Binary.com account and cashier will be linked to your MT5 account')}))
+                .prepend($('<h1/>', { html: text.localize('Start trading Forex and CFDs with Binary.com')}))
+                .append($('<p/>', {class:'notice-msg', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]">Create one</a> now', [
+                    page.url.url_for('home', '', true)])}));
             $('.login_link').click(function(){Login.redirect_to_login();});
         }
         return !this.is_logged_in;
@@ -18313,7 +18316,16 @@ var BinarySocket = new BinarySocketClass();
         currency,
         highlightBalance,
         mt5Logins,
-        mt5Accounts;
+        mt5Accounts,
+        accountDisplayName = {
+            volatility: 'Volatility Indices',
+            financial : 'Financial',
+            demo      : 'Demo',
+        },
+        marketDisplayName = {
+            volatility: 'Volatility Indices',
+            financial: 'Forex',
+        };
 
     var init = function() {
         MetaTraderData.initSocket();
@@ -18323,7 +18335,7 @@ var BinarySocket = new BinarySocketClass();
 
         hiddenClass = 'invisible';
         errorClass  = 'errorfield';
-        currency    = 'USD';
+        currency    = '$';
         mt5Logins   = {};
         mt5Accounts = {};
         highlightBalance = false;
@@ -18379,15 +18391,15 @@ var BinarySocket = new BinarySocketClass();
         findInSection(accType, '.form-new-account').addClass(hiddenClass);
         var mtWebURL = 'https://trade.mql5.com/trade?servers=Binary.com-Server&amp;trade_server=Binary.com-Server&amp;';
         var $details = $('<div/>').append($(
-            makeTextRow('Login', mt5Accounts[accType].login) +
+            makeTextRow('Login ID', mt5Accounts[accType].login) +
             makeTextRow('Balance', currency + ' ' + mt5Accounts[accType].balance, 'balance') +
             makeTextRow('Name', mt5Accounts[accType].name) +
             // makeTextRow('Leverage', mt5Accounts[accType].leverage)
-            makeTextRow('', text.localize('Start trading with your MetaTrader Account:') + '<div class="download gr-padding-10">' +
+            makeTextRow('', text.localize('Start trading with MT5:') + '<div class="download gr-padding-10">' +
                 '<a class="button pjaxload" href="' + page.url.url_for('download-metatrader') + '">' +
-                    '<span>' + text.localize('Download MetaTrader') + '</span></a>' +
+                    '<span>' + text.localize('Download desktop app') + '</span></a>' +
                 '<a class="button" href="' + (mtWebURL + 'login=' + mt5Accounts[accType].login) + '" target="_blank">' +
-                    '<span>' + text.localize('MetaTrader Web Platform') + '</span></a><br />' +
+                    '<span>' + text.localize('Go to web terminal') + '</span></a><br />' +
                 '<a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=Binary.com-Server" target="_blank">' +
                     '<div class="app-store-badge"></div>' +
                 '</a>' +
@@ -18403,9 +18415,9 @@ var BinarySocket = new BinarySocketClass();
             findInSection(accType, '.authenticate').addClass(hiddenClass);
             if(page.client.is_virtual()) {
                 $accordion.addClass(hiddenClass);
-                $('.msg-switch-to-deposit').removeClass(hiddenClass);
+                findInSection(accType, '.msg-switch-to-deposit').removeClass(hiddenClass);
             } else {
-                $('.msg-switch-to-deposit').addClass(hiddenClass);
+                findInSection(accType, '.msg-switch-to-deposit').addClass(hiddenClass);
                 ['.form-deposit', '.form-withdrawal'].map(function(formClass){
                     $form = findInSection(accType, formClass);
                     $form.find('.binary-login').text(page.client.loginid);
@@ -18555,9 +18567,9 @@ var BinarySocket = new BinarySocketClass();
                         if(loginInfo.real) hasRealBinaryAccount = true;
                     });
 
-                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ?
-                        text.localize('To create a real account for MetaTrader, switch to your [_1] real money account.', ['Binary.com']) :
-                        text.localize('To create a real account for MetaTrader, <a href="[_1]">upgrade to [_2] real money account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
+                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ? 
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
+                        text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
                 } else {
                     if(/financial/.test(accType) && !isAuthenticated) {
@@ -18566,7 +18578,8 @@ var BinarySocket = new BinarySocketClass();
                         MetaTraderData.requestFinancialAssessment();
                     } else {
                         $form = findInSection(accType, '.form-new-account');
-                        $form.find('.account-type').text(text.localize(accType.charAt(0).toUpperCase() + accType.slice(1)));
+                        $form.find('.account-msg').text(text.localize('Create a ' + accountDisplayName[accType] + ' Account to trade ' + marketDisplayName[accType] + ' on MT5.'));
+                        $form.find('.account-type').text(text.localize(accountDisplayName[accType]));
                         $form.find('.name-row').remove();
                         $form.removeClass(hiddenClass);
                     }
@@ -18624,7 +18637,7 @@ var BinarySocket = new BinarySocketClass();
             manageTabContents();
         } else if(!page.client.is_virtual()) {
             findInSection('financial', '.msg-account').html(
-                text.localize('To create a financial account for MetaTrader 5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
+                text.localize('To create a Financial Account for MT5, please complete the <a href="[_1]">Financial Assessment</a>.', [page.url.url_for('user/settings/assessmentws')])
             ).removeClass(hiddenClass);
         }
     };
@@ -18677,7 +18690,7 @@ var BinarySocket = new BinarySocketClass();
         if (new_type === 'gaming') new_type = 'volatility';
         mt5Logins[new_login] = new_type;
         MetaTraderData.requestLoginDetails(new_login);
-        showAccountMessage(new_type, text.localize('Congratulations! Your account has been created.'));
+        showAccountMessage(new_type, text.localize('Congratulations! Your ' + accountDisplayName[new_type] + ' Account has been created.'));
 
         // Update mt5_logins in localStorage
         var mt5_logins = JSON.parse(page.client.get_storage_value('mt5_logins') || '{}');
@@ -18794,7 +18807,7 @@ var BinarySocket = new BinarySocketClass();
             // main & investor passwords must vary
             var valueInvestPass = $form.find('.txtInvestPass').val();
             if(valueInvestPass && valueInvestPass === valuePass) {
-                showError('.txtInvestPass', text.localize('Investor Password cannot be same as Main Password.'));
+                showError('.txtInvestPass', text.localize('Investor password cannot be same as Main password.'));
                 isValid = false;
             }
             // name

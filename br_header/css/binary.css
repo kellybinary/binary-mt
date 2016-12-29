@@ -338,6 +338,7 @@ body #topbar #topbar-info > div {
 body #topbar #gmt-clock, body #topbar #contact-us, body #topbar .upgrademessage {
   -webkit-align-self: center;
       -ms-flex-item-align: center;
+              -ms-grid-row-align: center;
           align-self: center;
 }
 body #topbar #gmt-clock {
@@ -2577,8 +2578,7 @@ body.ZH_TW .google-play-badge {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-default .gr-col {
   -webkit-flex-direction: column;
@@ -3423,8 +3423,7 @@ body.ZH_TW .google-play-badge {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .gr-col {
@@ -4159,8 +4158,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-m .gr-col-m {
   -webkit-flex-direction: column;
@@ -5006,8 +5004,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-m {
@@ -5742,8 +5739,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-p .gr-col-p {
   -webkit-flex-direction: column;
@@ -6589,8 +6585,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-p {
@@ -7325,8 +7320,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-t .gr-col-t {
   -webkit-flex-direction: column;
@@ -8172,8 +8166,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-t {
@@ -8908,8 +8901,7 @@ body {
   margin-right: 0 !important;
   -webkit-transform: translateX(-50%);
   -moz-transition: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .state-ipad-landscape .gr-col-ipad-landscape {
   -webkit-flex-direction: column;
@@ -9755,8 +9747,7 @@ body {
     margin-right: 0 !important;
     -webkit-transform: translateX(-50%);
     -moz-transition: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .gr-col-ipad-landscape {
@@ -10664,6 +10655,7 @@ html.mm-opened.mm-dragging #mm-blocker {
 html.mm-slide .mm-menu {
   transition: -webkit-transform 0.4s ease;
   transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
 html.mm-slide.mm-opened .mm-menu {
@@ -10709,6 +10701,7 @@ html.mm-slide.mm-bottom.mm-opening .mm-menu {
 html.mm-zoom-menu .mm-menu {
   transition: -webkit-transform 0.4s ease;
   transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
 }
 
 html.mm-zoom-menu.mm-opened .mm-menu {
@@ -11239,6 +11232,7 @@ html.mm-front.mm-opened .mm-page {
   transition: none 0.4s ease;
   transition-property: top, right, bottom, left, -webkit-transform;
   transition-property: top, right, bottom, left, transform;
+  transition-property: top, right, bottom, left, transform, -webkit-transform;
 }
 
 html.mm-front .mm-page,
