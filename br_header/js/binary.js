@@ -16704,6 +16704,9 @@ var Page = function(config) {
     this.contents = new Contents(this.client, this.user);
     this._lang = null;
     onLoad.queue(GTM.push_data_layer);
+    $('#logo').on('click', function() {
+        load_with_pjax(page.url.url_for(page.client.is_logged_in ? japanese_client() ? 'metatrader' : 'home' : ''));
+    });
 };
 
 Page.prototype = {
