@@ -16149,8 +16149,8 @@ Client.prototype = {
         if (!this.is_logged_in && shouldReplacePageContents) {
             $('#content > .container').addClass('center-text')
                 .html($('<p/>', { class: 'notice-msg', html : 
-                    text.localize('[_1] to your Binary.com account to create an MT5 account <br/> Don\'t have a Binary.com account? <a href="[_2]">Create one</a> now', [
-                    '<a class="login_link" href="javascript:;">' + text.localize('Log in') + '</a>'], [page.url.url_for('home', '', true)])}))
+                    text.localize('To register an MT5 account, please [_1] to your Binary.com account <br/> Don\'t have a Binary.com account? <a href="[_2]">Create one</a> now', [
+                    '<a class="login_link" href="javascript:;">' + text.localize('log in') + '</a>'], [page.url.url_for('home', '', true)])}))
                 .prepend($('<h3/>', { html: text.localize('Take advantage of MT5’s advanced features and tools for a complete trading experience.')}))
                 .prepend($('<h1/>', { html: text.localize('Start trading Forex and CFDs with MetaTrader 5')}));
                 // .append($('<p/>', {class:'notice-msg', html: text.localize('Don\'t have a Binary.com account? <a href="[_1]">Create one</a> now', [
