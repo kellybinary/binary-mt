@@ -17903,9 +17903,6 @@ function BinarySocketClass() {
                       } else if (response.error.code === 'InvalidAppID') {
                           wrongAppId = getAppId();
                           alert(response.error.message);
-                      } 
-                      else if (response.error.code === 'MT5APISuspendedError') {
-                          page.client.response_mt5_login_list(response);
                       }
                     }
                 }
