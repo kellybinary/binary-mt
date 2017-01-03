@@ -16193,6 +16193,7 @@ Client.prototype = {
     },
     response_mt5_login_list: function(response) {
         var mt5_logins = {};
+        console.log(response);
         if(response.mt5_login_list && response.mt5_login_list.length > 0) {
             response.mt5_login_list.map(function(obj) {
                 var account_type = MetaTrader.getAccountType(obj.group);
@@ -17863,7 +17864,6 @@ function BinarySocketClass() {
                 } else if (type === 'get_self_exclusion') {
                     SessionDurationLimit.exclusionResponseHandler(response);
                 } else if (type === 'mt5_login_list') {
-                    console.log(response);
                     page.client.response_mt5_login_list(response);
                 } else if (type === 'get_settings' && response.get_settings) {
                     if (!Cookies.get('residence') && response.get_settings.country_code) {
