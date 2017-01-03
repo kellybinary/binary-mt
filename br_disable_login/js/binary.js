@@ -17819,6 +17819,11 @@ function BinarySocketClass() {
 
         binarySocket.onmessage = function(msg) {
             var response = JSON.parse(msg.data);
+            // mock error
+            response.error = {
+                code: 'MT5APISuspendedError',
+                message: 'MT5 API calls are suspended.',
+            };
             if (response) {
                 if(response.hasOwnProperty('echo_req') && response.echo_req !== null && response.echo_req.hasOwnProperty('passthrough')) {
                     var passthrough = response.echo_req.passthrough;
