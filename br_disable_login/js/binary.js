@@ -18252,7 +18252,7 @@ var BinarySocket = new BinarySocketClass();
 
     var responseHandler = function(response) {
         if (response.error.code === 'MT5APISuspendedError') {
-            alert('hide');
+            MetaTraderUI.responseMT5APISuspended();
             return;
         }
         switch(response.msg_type) {
@@ -18884,6 +18884,11 @@ var BinarySocket = new BinarySocketClass();
 
     var enableButton = function($btn) {
         $btn.removeClass('button-disabled').removeAttr('disabled');
+    };
+
+    var responseMT5APISuspended = function() {
+        $('#content').empty()
+            .html('<div class="container"><p class="notice-msg center-text">' + rtext.localize('Please contact <a href="[_1]">Customer Support</a>.', [page.url.url_for('contact', '', true)]) + '</p></div>');
     };
 
     return {
