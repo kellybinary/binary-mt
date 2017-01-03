@@ -18902,6 +18902,7 @@ var BinarySocket = new BinarySocketClass();
         responseAccountStatus  : responseAccountStatus,
         responseLandingCompany : responseLandingCompany,
         responseFinancialAssessment: responseFinancialAssessment,
+        responseMT5APISuspended: responseMT5APISuspended,
     };
 }());
 
