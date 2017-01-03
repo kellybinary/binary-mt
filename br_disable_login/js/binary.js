@@ -17868,6 +17868,9 @@ function BinarySocketClass() {
                 } else if (type === 'get_self_exclusion') {
                     SessionDurationLimit.exclusionResponseHandler(response);
                 } else if (type === 'mt5_login_list') {
+                     if(response.hasOwnProperty('error') && response.error.code === 'MT5APISuspendedError') {
+                           $('#content').empty().html('<div class="container"><p class="notice-msg center-text">' + (response.error.message) + text.localize('<br/> Please contact <a class="pjaxload" href="[1]">customer support</a> for more information.', page.url.url_for('contact')) + '</p></div>');
+                      }
                     page.client.response_mt5_login_list(response);
                 } else if (type === 'get_settings' && response.get_settings) {
                     if (!Cookies.get('residence') && response.get_settings.country_code) {
@@ -17903,8 +17906,6 @@ function BinarySocketClass() {
                       } else if (response.error.code === 'InvalidAppID') {
                           wrongAppId = getAppId();
                           alert(response.error.message);
-                      } else if(response.error.code === 'MT5APISuspendedError') {
-                           $('#content').empty().html('<div class="container"><p class="notice-msg center-text">' + (response.error.message) + text.localize('<br/> Please contact <a class="pjaxload" href="[1]">customer support</a> for more information.', page.url.url_for('contact')) + '</p></div>');
                       }
                     }
                 }
