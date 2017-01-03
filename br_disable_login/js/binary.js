@@ -16195,8 +16195,7 @@ Client.prototype = {
         var mt5_logins = {};
         if(response.hasOwnProperty('error') && response.error.code === 'MT5APISuspendedError') {
             $('#content').empty().html('<div class="container"><p class="notice-msg center-text">' + (response.error.message) + text.localize('<br/> Please contact <a class="pjaxload" href="[1]">customer support</a> for more information.', page.url.url_for('contact')) + '</p></div>');
-        }
-        if(response.mt5_login_list && response.mt5_login_list.length > 0) {
+        } else if(response.mt5_login_list && response.mt5_login_list.length > 0) {
             response.mt5_login_list.map(function(obj) {
                 var account_type = MetaTrader.getAccountType(obj.group);
                 if(account_type) {
@@ -17906,6 +17905,8 @@ function BinarySocketClass() {
                       } else if (response.error.code === 'InvalidAppID') {
                           wrongAppId = getAppId();
                           alert(response.error.message);
+                      } else if (response.error.code === 'MT5APISuspendedError') {
+                          page.client.response_mt5_login_list(response);
                       }
                     }
                 }
