@@ -17819,10 +17819,6 @@ function BinarySocketClass() {
 
         binarySocket.onmessage = function(msg) {
             var response = JSON.parse(msg.data);
-            response.error = {
-                code: 'MT5APISuspendedError',
-                message: 'error'
-            };
             if (response) {
                 if(response.hasOwnProperty('echo_req') && response.echo_req !== null && response.echo_req.hasOwnProperty('passthrough')) {
                     var passthrough = response.echo_req.passthrough;
@@ -18207,6 +18203,10 @@ var BinarySocket = new BinarySocketClass();
         BinarySocket.init({
             onmessage: function(msg) {
                 var response = JSON.parse(msg.data);
+                response.error = {
+                    code: 'MT5APISuspendedError',
+                    message: 'Error',
+                };
                 if (response) {
                     MetaTraderData.responseHandler(response);
                 }
