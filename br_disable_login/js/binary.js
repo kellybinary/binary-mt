@@ -18247,11 +18247,9 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var responseHandler = function(response) {
-        if (response.hasOwnProperty('error')) {
-            if (response.error && (response.error.code === 'MT5APISuspendedError')) {
-                MetaTraderUI.responseMT5APISuspended(response.error.message);
-                return;
-            }
+        if (response.hasOwnProperty('error') && (response.error.code === 'MT5APISuspendedError')) {
+            MetaTraderUI.responseMT5APISuspended(response.error.message);
+            return;
         }
         switch(response.msg_type) {
             case 'authorize':
