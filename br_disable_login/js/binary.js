@@ -16193,7 +16193,6 @@ Client.prototype = {
     },
     response_mt5_login_list: function(response) {
         var mt5_logins = {};
-        console.log(response);
         if(response.mt5_login_list && response.mt5_login_list.length > 0) {
             response.mt5_login_list.map(function(obj) {
                 var account_type = MetaTrader.getAccountType(obj.group);
@@ -17904,9 +17903,10 @@ function BinarySocketClass() {
                       } else if (response.error.code === 'InvalidAppID') {
                           wrongAppId = getAppId();
                           alert(response.error.message);
-                      } else if (response.error.code === 'MT5APISuspendedError') {
-                          page.client.response_mt5_login_list(response);
-                      }
+                      } 
+                      // else if (response.error.code === 'MT5APISuspendedError') {
+                      //     page.client.response_mt5_login_list(response);
+                      // }
                     }
                 }
                 if(typeof events.onmessage === 'function'){
@@ -18676,6 +18676,9 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var responseLoginDetails = function(response) {
+        if(response.hasOwnProperty('error') && response.error.code === 'MT5APISuspendedError') {
+            console.log(response);
+        }
         if(response.hasOwnProperty('error')) {
             showAccountMessage(mt5Logins[response.echo_req.login], response.error.message);
             if (mt5Logins[response.echo_req.login] === getActiveTab()) {
