@@ -18626,7 +18626,6 @@ var BinarySocket = new BinarySocketClass();
 
     var responseAccountStatus = function(response) {
         if(response.hasOwnProperty('error')) {
-            
             return showPageError(response.error.message, false);
         }
 
