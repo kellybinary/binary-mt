@@ -18247,6 +18247,10 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var responseHandler = function(response) {
+        if (response.error.code === 'MT5APISuspendedError') {
+            alert('hide');
+            return;
+        }
         switch(response.msg_type) {
             case 'authorize':
                 lcRequested = false;
@@ -18328,7 +18332,8 @@ var BinarySocket = new BinarySocketClass();
         marketDisplayName = {
             volatility: 'Volatility Indices',
             financial: 'Forex',
-        };
+        },
+        isSuspended; // MT5 api calls is suspended
 
     var init = function() {
         MetaTraderData.initSocket();
