@@ -16260,6 +16260,9 @@ Client.prototype = {
         cookie_expire.setDate(cookie_expire.getDate() + 60);
         var cookie = new CookieStorage(cookieName, domain);
         cookie.write(Value, cookie_expire, true);
+    },
+    response_mt5_suspended: function(response) {
+        console.log(response);
     }
 };
 
@@ -17883,6 +17886,8 @@ function BinarySocketClass() {
                             localStorage.setItem('clients_country', response.website_status.clients_country);
                         }
                     }
+                } else if (type === 'mt5_suspended') {
+                    page.client.response_mt5_suspended(response);
                 }
                 if (response.hasOwnProperty('error')) {
                     if(response.error && response.error.code) {
