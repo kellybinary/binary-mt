@@ -17904,9 +17904,9 @@ function BinarySocketClass() {
                           wrongAppId = getAppId();
                           alert(response.error.message);
                       } 
-                      // else if (response.error.code === 'MT5APISuspendedError') {
-                      //     page.client.response_mt5_login_list(response);
-                      // }
+                      else if (response.error.code === 'MT5APISuspendedError') {
+                          page.client.response_mt5_login_list(response);
+                      }
                     }
                 }
                 if(typeof events.onmessage === 'function'){
