@@ -16193,7 +16193,7 @@ Client.prototype = {
     },
     response_mt5_login_list: function(response) {
         var mt5_logins = {};
-        if (response.mt5_login_list && response.mt5_login_list.length > 0) {
+        if(response.mt5_login_list && response.mt5_login_list.length > 0) {
             response.mt5_login_list.map(function(obj) {
                 var account_type = MetaTrader.getAccountType(obj.group);
                 if(account_type) {
