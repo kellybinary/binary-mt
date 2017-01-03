@@ -18676,9 +18676,6 @@ var BinarySocket = new BinarySocketClass();
     };
 
     var responseLoginDetails = function(response) {
-        if(response.hasOwnProperty('error') && response.error.code === 'MT5APISuspendedError') {
-            console.log(response);
-        }
         if(response.hasOwnProperty('error')) {
             showAccountMessage(mt5Logins[response.echo_req.login], response.error.message);
             if (mt5Logins[response.echo_req.login] === getActiveTab()) {
