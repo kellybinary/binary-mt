@@ -18888,7 +18888,7 @@ var BinarySocket = new BinarySocketClass();
 
     var responseMT5APISuspended = function() {
         $('#content').empty()
-            .html('<div class="container"><p class="notice-msg center-text">' + rtext.localize('Please contact <a href="[_1]">Customer Support</a>.', [page.url.url_for('contact', '', true)]) + '</p></div>');
+            .html('<div class="container"><p class="notice-msg center-text">' + text.localize('Please contact <a href="[_1]">Customer Support</a>.', [page.url.url_for('contact', '', true)]) + '</p></div>');
     };
 
     return {
