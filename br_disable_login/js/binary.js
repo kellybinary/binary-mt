@@ -18205,7 +18205,7 @@ var BinarySocket = new BinarySocketClass();
                 var response = JSON.parse(msg.data);
                 response.error = {
                     code: 'MT5APISuspendedError',
-                    message: 'Error',
+                    message: 'MT5 API calls are suspended.',
                 };
                 if (response) {
                     MetaTraderData.responseHandler(response);
@@ -18252,7 +18252,7 @@ var BinarySocket = new BinarySocketClass();
 
     var responseHandler = function(response) {
         if (response.error.code === 'MT5APISuspendedError') {
-            MetaTraderUI.responseMT5APISuspended();
+            MetaTraderUI.responseMT5APISuspended(response.error.message);
             return;
         }
         switch(response.msg_type) {
@@ -18336,8 +18336,7 @@ var BinarySocket = new BinarySocketClass();
         marketDisplayName = {
             volatility: 'Volatility Indices',
             financial: 'Forex',
-        },
-        isSuspended; // MT5 api calls is suspended
+        };
 
     var init = function() {
         MetaTraderData.initSocket();
@@ -18886,9 +18885,9 @@ var BinarySocket = new BinarySocketClass();
         $btn.removeClass('button-disabled').removeAttr('disabled');
     };
 
-    var responseMT5APISuspended = function() {
+    var responseMT5APISuspended = function(message) {
         $('#content').empty()
-            .html('<div class="container"><p class="notice-msg center-text">' + text.localize('Please contact <a href="[_1]">Customer Support</a>.', [page.url.url_for('contact', '', true)]) + '</p></div>');
+            .html('<div class="container"><p class="notice-msg center-text">' + message +text.localize('Please contact <a href="[_1]">Customer Support</a>.', [page.url.url_for('contact', '', true)]) + '</p></div>');
     };
 
     return {
