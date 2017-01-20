@@ -670,6 +670,10 @@ body #topbar #display_language li:first-child {
   margin-left: 5% !important;
 }
 
+.formula-box {
+  background-color: #C2C2C2;
+}
+
 .tac-content .tab-menu {
   margin-bottom: 25px;
 }
