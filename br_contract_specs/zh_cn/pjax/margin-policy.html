@@ -1,0 +1,42 @@
+<div id="content" class="margin-policy-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T65M2L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T65M2L');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader Margin Policy | mt.binary.com</title>
+            <div id="content_class">margin-policy-content</div>
+        </div>
+        
+        <div class="container">
+
+<div class="gr-row">
+    <div class="gr-12">
+        <h1>保证金政策</h1>
+    </div>
+    <div class="gr-12">
+        <h2>What is margin?</h2>
+        <p>Margin allows you to trade on leverage –– giving you the same level of market exposure using much less capital.</p>
+        <p>For example, if you wanted to purchase 100 units of a particular asset trading at USD 50 per unit through a traditional broker, it would cost you USD 5,000 for this transaction.</p>
+        <p>With a CFD or leveraged FX trading, you can purchase 100 units of the same asset at a fraction of the cost.</p>
+        <h2>保证金计算</h2>
+        <h3>波动率指数差价合约</h3>
+        <p>The Margin calculation for CFDs on Volatility Indices depends on volume (size), price and margin rate.</p>
+        <p>保证金 = 交易量 （大小） * 价格 * 保证金率</p>
+        <h3>追加保证金通知的执行</h3>
+        <p><strong>追加保证金水平</strong> - 当您达到此资产水平（即您的账户资金不足以满足保证金要求）时，您的账户将处于追加保证金状态。 追加保证金状态不会影响开立新仓位的能力。</p>
+        <p><strong>止损水平</strong> - 当您达到此资产水平时，您的待处理订单将被删除，并且未平仓头寸将被强制平仓。强制清算水平为50％。一旦账户达到强制清算水平，订单和头寸将按照以下顺序在账户上强制平仓：</p>
+        <ul class="bullet">
+            <li>The server analyzes client's orders that are not under execution at the moment.</li>
+            <li>它将删除具最大预留保证金的订单。</li>
+            <li>如果资产水平仍然低于强制平仓水平，下一个订单将被删除 ，没有保证金要求的订单不会被删除。</li>
+            <li>如果资产水平仍然低于强制平仓水平，服务器将亏损最大的头寸平仓。</li>
+            <li>所有头寸都已平仓，直到资产水平高于强制平仓水平。</li>
+        </ul>
+    </div>
+</div>

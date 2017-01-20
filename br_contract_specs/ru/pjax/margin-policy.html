@@ -1,0 +1,42 @@
+<div id="content" class="margin-policy-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T65M2L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T65M2L');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader Margin Policy | mt.binary.com</title>
+            <div id="content_class">margin-policy-content</div>
+        </div>
+        
+        <div class="container">
+
+<div class="gr-row">
+    <div class="gr-12">
+        <h1>Политика расчета маржи</h1>
+    </div>
+    <div class="gr-12">
+        <h2>What is margin?</h2>
+        <p>Margin allows you to trade on leverage –– giving you the same level of market exposure using much less capital.</p>
+        <p>For example, if you wanted to purchase 100 units of a particular asset trading at USD 50 per unit through a traditional broker, it would cost you USD 5,000 for this transaction.</p>
+        <p>With a CFD or leveraged FX trading, you can purchase 100 units of the same asset at a fraction of the cost.</p>
+        <h2>Margin Calculation</h2>
+        <h3>CFDs on Volatility Indices</h3>
+        <p>The Margin calculation for CFDs on Volatility Indices depends on volume (size), price and margin rate.</p>
+        <p>Margin = Volume (size) * price * margin rate</p>
+        <h3>Implementation of Margin Call</h3>
+        <p><strong>Уровень увеличения маржи</strong> — когда Вы достигаете данного уровня на торгуемом активе (напр., когда суммы средств на счету недостаточно для соблюдения маржевого требования), Вам поступает запрос на увеличение маржи. Статус запроса на увеличение маржи не влияет на Вашу возможность открывать новые контракты.</p>
+        <p><strong>Stop Out Level</strong> - when you reach this level of assets, your pending orders are deleted and open positions are forced closed. The forced liquidation level is 50%. Once the account has hit the forced liquidation level, orders and positions are forcedly closed on an account in the following order:</p>
+        <ul class="bullet">
+            <li>The server analyzes client's orders that are not under execution at the moment.</li>
+            <li>It deletes an order with the largest margin reserved.</li>
+            <li>If the level of assets is still under the Stop Out level, the next order is deleted. Orders without margin requirements are not deleted.</li>
+            <li>If the level of assets is still under the Stop Out Level, the server closes a position with the largest loss.</li>
+            <li>Positions are closed until the level of assets becomes higher that the Stop Out Level.</li>
+        </ul>
+    </div>
+</div>
