@@ -17683,7 +17683,7 @@ pjax_config_page("/contract-specifications", function() {
        onLoad: function() {
            var hash;
            function updateTab() {
-               hash = /^#(forex|volatility|forex)-tab$/.test(window.location.hash) ? window.location.hash : '#forex-tab';
+               hash = /^#(forex|volatility|cash)-tab$/.test(window.location.hash) ? window.location.hash : '#cs-tab';
                $('#cs-menu li').removeClass('active a-active');
                $('.menu-has-sub-item div.toggle-content').addClass('invisible');
                $(hash).addClass('active')
