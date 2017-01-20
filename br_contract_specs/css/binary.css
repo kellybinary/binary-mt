@@ -660,9 +660,6 @@ body #topbar #display_language li:first-child {
   font-size: inherit;
   text-align: left;
 }
-#forex-specs table th, #volatility-specs table th {
-  text-align: left;
-}
 
 @media screen and (max-width: 768px) {
   .table-container {
