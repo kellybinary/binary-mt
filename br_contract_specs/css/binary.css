@@ -651,13 +651,16 @@ body #topbar #display_language li:first-child {
   vertical-align: middle;
 }
 
-#contract-specs table td {
+#forex-specs table td, #volatility-specs table td {
   font-size: 0.9em;
   text-align: center;
 }
-#contract-specs table td:first-child {
+#forex-specs table td:first-child, #volatility-specs table td:first-child {
   white-space: nowrap;
   font-size: inherit;
+  text-align: left;
+}
+#forex-specs table th, #volatility-specs table th {
   text-align: left;
 }
 
@@ -667,7 +670,7 @@ body #topbar #display_language li:first-child {
   }
 }
 .gr-prefix-1 {
-  margin-left: 5%;
+  margin-left: 5% !important;
 }
 
 .tac-content .tab-menu {
