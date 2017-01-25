@@ -234,10 +234,6 @@ fieldset .error-msg {
   margin-top: 3px;
 }
 
-#content {
-  margin-bottom: 20px;
-}
-
 #page-wrapper {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -695,10 +691,20 @@ body #topbar #display_language li:first-child {
   background-image: url("../../images/pages/margin-policy/mr2_ai.svg");
 }
 
-.separator {
-  margin: 40px 0;
+.separator, .separator-blank {
   background-color: #F2F2F2;
-  height: 1px;
+  height: 2px;
+  display: block;
+  border: none;
+}
+
+.separator-blank {
+  background-color: #fff;
+}
+
+.mt-section {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .mt-img {
@@ -706,7 +712,7 @@ body #topbar #display_language li:first-child {
   margin-right: auto;
   background-repeat: no-repeat;
   background-position: center;
-  width: 300px;
+  height: 300px;
 }
 
 .mt-box {
