@@ -676,19 +676,19 @@ body #topbar #display_language li:first-child {
 }
 
 .l1-icon {
-  background-image: url("../../images/pages/margin-policy/l1_ai.svg");
+  background-image: url("../images/pages/margin-policy/l1_ai.svg");
 }
 
 .l2-icon {
-  background-image: url("../../images/pages/margin-policy/l2_ai.svg");
+  background-image: url("../images/pages/margin-policy/l2_ai.svg");
 }
 
 .mr1-icon {
-  background-image: url("../../images/pages/margin-policy/mr1_ai.svg");
+  background-image: url("../images/pages/margin-policy/mr1_ai.svg");
 }
 
 .mr2-icon {
-  background-image: url("../../images/pages/margin-policy/mr2_ai.svg");
+  background-image: url("../images/pages/margin-policy/mr2_ai.svg");
 }
 
 .separator, .separator-blank {
