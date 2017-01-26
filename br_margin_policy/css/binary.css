@@ -710,7 +710,7 @@ body #topbar #display_language li:first-child {
   background-image: url("../images/pages/margin-policy/mr2_ai.svg");
 }
 
-.separator {
+.separator, .separator-blank {
   background-color: #F2F2F2;
   height: 2px;
   display: block;
