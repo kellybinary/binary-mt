@@ -663,16 +663,35 @@ body #topbar #display_language li:first-child {
   }
 }
 .gr-prefix-1 {
-  margin-left: 5% !important;
-}
-
-.box {
-  background-color: #F2F2F2;
-  padding: 10px;
+  margin: 1em 0 1em 2em !important;
 }
 
 .tac-content .tab-menu {
   margin-bottom: 25px;
+}
+
+.mt-section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.mt-box {
+  margin: 0 auto;
+  width: 700px;
+  padding: 10px;
+  border-bottom: solid 0.2em #F2F2F2;
+}
+.mt-box .mt-box-header {
+  background-color: #F2F2F2;
+  padding: 10px;
+}
+
+.mt-img {
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 300px;
 }
 
 .l1-icon {
@@ -696,34 +715,6 @@ body #topbar #display_language li:first-child {
   height: 2px;
   display: block;
   border: none;
-}
-
-.separator-blank {
-  background-color: #fff;
-}
-
-.mt-section {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.mt-img {
-  margin-left: auto;
-  margin-right: auto;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 300px;
-}
-
-.mt-box {
-  margin: 0 auto;
-  width: 700px;
-  padding: 10px;
-  border-bottom: solid 0.2em #F2F2F2;
-}
-.mt-box .mt-box-header {
-  background-color: #F2F2F2;
-  padding: 10px;
 }
 
 /* static pages */
