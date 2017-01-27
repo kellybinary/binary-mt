@@ -670,15 +670,9 @@ body #topbar #display_language li:first-child {
   margin-bottom: 25px;
 }
 
-.mt-section {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
 .mt-box {
   margin: 0 auto;
   width: 700px;
-  padding: 10px;
   border-bottom: solid 0.2em #F2F2F2;
 }
 .mt-box .mt-box-header {
@@ -710,7 +704,7 @@ body #topbar #display_language li:first-child {
   background-image: url("../images/pages/margin-policy/mr2_ai.svg");
 }
 
-.separator, .separator-blank {
+.separator {
   background-color: #F2F2F2;
   height: 2px;
   display: block;
