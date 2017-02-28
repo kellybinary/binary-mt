@@ -147,6 +147,7 @@ var MetaTraderUI = (function() {
                         });
                     });
                 }
+                displayTab();
             }
         }
     };
