@@ -147,6 +147,7 @@ var MetaTraderUI = (function() {
                         });
                     });
                 }
+                displayTab();
             }
         }
     };
@@ -170,7 +171,7 @@ var MetaTraderUI = (function() {
             accType = 'gaming';
         }
         if(formValidate()) {
-            MetaTraderData.requestSend({
+            var req = {
                 'mt5_new_account' : 1,
                 'account_type'    : accType,
                 'email'           : TUser.get().email,
@@ -178,7 +179,11 @@ var MetaTraderUI = (function() {
                 'mainPassword'    : $form.find('.txtMainPass').val(),
                 'investPassword'  : $form.find('.txtInvestPass').val(),
                 'leverage'        : '100' // $form.find('.ddlLeverage').val()
-            });
+            };
+            if (accType === 'financial') {
+                req.mt5_account_type = 'cent';
+            }
+            MetaTraderData.requestSend(req);
         }
     };
 
@@ -263,7 +268,7 @@ var MetaTraderUI = (function() {
                         if(loginInfo.real) hasRealBinaryAccount = true;
                     });
 
-                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ? 
+                    findInSection(accType, '.msg-account').html(hasRealBinaryAccount ?
                         text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please switch to your [_1] Real Account.', ['Binary.com']) :
                         text.localize('To create a ' + accountDisplayName[accType] + ' Account for MT5, please <a href="[_1]"> upgrade to [_2] Real Account</a>.', [page.url.url_for('new_account/realws', '', true), 'Binary.com'])
                     ).removeClass(hiddenClass);
