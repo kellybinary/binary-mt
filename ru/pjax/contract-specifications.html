@@ -36,16 +36,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="forex-tab-content" class="toggle-content">
                 <div id="forex-specs" class="gr-row">
     <div class="gr-12 gr-padding-10">
-        <h1>Contract Specifications - Forex</h1>
+        <h1>Характеристики контрактов — Forex</h1>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Currency Symbol</th>
-                        <th>Lot Size (Volume = 1.0)</th>
-                        <th>Minimum Volume</th>
+                        <th>Символ валюты</th>
+                        <th>Размер лота (объём = 1.0)</th>
+                        <th>Минимальный объём</th>
                         <th>Minimum Volume Increment</th>
-                        <th>Maximum Leverage</th>
+                        <th>Максимальный кредитный рычаг</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -236,12 +236,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <ul class="bullet">
                 <li><strong>Long positions</strong>: We charge a 2% fee on top of interbank lending rates.
                     <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a long position on the EUR/USD symbol is -5.64. This would require an overnight fee of 5.64 points for one lot of open position in EUR/USD, where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will incur an interest fee of EUR5.64 for keeping the position open overnight.">
-                        How do we calculate interest fees for long positions?
+                        Как мы рассчитываем проценты на длинных позициях?
                     </span>
                 </li>
                 <li><strong>Short positions</strong>: We charge a 2% fee on top of interbank lending rates.
                     <span data-balloon-length="large" data-balloon="Let's say the points adjustment for a short position on the EUR/USD symbol is 1.64. This would result in an overnight credit of 1.64 points for one lot of open position in EUR/USD where the size of one lot is 100,000 units. The points will then be converted into the deposit currency (which is the euro in this example). As a result, you will be credited with EUR1.64 for keeping the position open overnight.">
-                         How do we calculate interest fees for short positions?
+                         Как мы рассчитываем проценты на коротких позициях?
                     </span>
                 </li>
             </ul>
@@ -265,19 +265,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <table>
                 <thead>
                     <tr>
-                        <th>Symbol</th>
+                        <th>Символ</th>
                         <th>Volume 1.0 (Trade Size)</th>
-                        <th>Minimum Volume (Trade Size)</th>
-                        <th>Maximum Volume (Trade Size)</th>
+                        <th>Мин. объём (размер контракта)</th>
+                        <th>Макс. объём (размер контракта)</th>
                         <th>Minimum Volume Increment</th>
-                        <th>Pip Size</th>
-                        <th>Minimum Spread</th>
-                        <th>Margin</th>
+                        <th>Размер пипса</th>
+                        <th>Минимальный спред</th>
+                        <th>Маржа</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Volatility 100 Index</th>
+                        <th>Индекс волатильн. 100</th>
                         <td>USD 1 per point</td>
                         <td>0.01</td>
                         <td>100</td>
@@ -287,7 +287,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th>Volatility 75 Index</th>
+                        <th>Индекс волатильн. 75</th>
                         <td>USD 1 per point</td>
                         <td>0.01</td>
                         <td>100</td>
@@ -297,7 +297,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th>Volatility 50 Index</th>
+                        <th>Индекс волатильн. 50</th>
                         <td>USD 1 per point</td>
                         <td>0.5</td>
                         <td>100</td>
@@ -307,7 +307,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th>Volatility 25 Index</th>
+                        <th>Индекс волатильн. 25</th>
                         <td>USD 1 per point</td>
                         <td>0.5</td>
                         <td>100</td>
@@ -317,7 +317,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th>Volatility 10 Index</th>
+                        <th>Индекс волатильн. 10</th>
                         <td>USD 1 per point</td>
                         <td>0.1</td>
                         <td>100</td>
@@ -327,9 +327,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 100 Index</th>
+                        <th data-balloon="Высокочастотный (2 тика в секунду)">ВЧ Индекс волатильн. 100</th>
                         <td>USD 1 per point</td>
-                        <td>0.01</td>
+                        <td>0.3</td>
                         <td>100</td>
                         <td>0.01</td>
                         <td>0.001</td>
@@ -337,7 +337,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 50 Index</th>
+                        <th data-balloon="Высокочастотный (2 тика в секунду)">ВЧ Индекс волатильн. 50</th>
                         <td>USD 1 per point</td>
                         <td>0.5</td>
                         <td>100</td>
@@ -347,7 +347,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <td>0.2%</td>
                     </tr>
                     <tr>
-                        <th data-balloon="High frequency (2 ticks per second)">HF Volatility 10 Index</th>
+                        <th data-balloon="Высокочастотный (2 тика в секунду)">ВЧ Индекс волатильн. 10</th>
                         <td>USD 1 per point</td>
                         <td>0.1</td>
                         <td>100</td>
@@ -367,8 +367,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p>For example, the CFDs on Volatility Indices offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the Volatility 100 Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
-                <p>(Sell Price – Buy Price) x Volume x Price Per Point = Profit</p>
-                <p>I.e. (20010 – 20000) x 1 x 1 = USD 10</p>
+                <p>(Цена продажи - Цена покупки) x Объём x Цена за пункт = Прибыль</p>
+                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
             </div>
         </div>
         <p>Each time you open a position on a Volatility Index symbol, you can start with a minimum volume transaction of 0.01 (trade size), which translates to USD 0.01 per point movement of the index.</p>
@@ -385,12 +385,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <table>
                 <thead>
                 <tr>
-                    <th>Symbol</th>
-                    <th>Description</th>
-                    <th>Volume 1.0<br>(Trade Size)</th>
-                    <th>Minimum Volume<br>(Trade Size)</th>
-                    <th>Maximum Volume<br>(Trade Size)</th>
-                    <th>Margin</th>
+                    <th>Символ</th>
+                    <th>Описание</th>
+                    <th>Объём 1.0<br>(размер контракта)</th>
+                    <th>Мин. объём<br>(размер контракта)</th>
+                    <th>Макс. объём<br>(размер контракта)</th>
+                    <th>Маржа</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -411,7 +411,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <td>0.2%</td>
                 </tr>
                 <tr>
-                    <td>IND_30</td>
+                    <td>IND_50</td>
                     <td>India 50 Cash Index</td>
                     <td>USD 1 per point</td>
                     <td>1</td>
@@ -443,7 +443,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <td>0.2%</td>
                 </tr>
                 <tr>
-                    <td>GBP_100</td>
+                    <td>GBR_100</td>
                     <td>UK 100 Cash Index</td>
                     <td>GBP 1 per point</td>
                     <td>1</td>
@@ -517,8 +517,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p>For example, the CFDs on US 30 Cash Index offer a USD 1 per point contract. If you buy a Volume 1.0 contract for the US 30 Cash Index with current ask price of USD 20,000 and later sell it at a bid price of USD 20,010, your net profit will be calculated as follows:</p>
         <div class="gr-12 gr-padding-10 fill-bg-color">
             <div class="gr-prefix-1">
-                <p>(Sell Price – Buy Price) x Volume x Price Per Point = Profit</p>
-                <p>I.e. (20010 – 20000) x 1 x 1 = USD 10</p>
+                <p>(Цена продажи - Цена покупки) x Объём x Цена за пункт = Прибыль</p>
+                <p>I.e. (20010 - 20000) x 1 x 1 = USD 10</p>
             </div>
         </div>
         <p>Margin indicates how much investment you can control based on your initial capital. For example, a 1% margin will allow you to control up to USD 100,000 using only USD 1,000 of your own money as deposit.</p>
