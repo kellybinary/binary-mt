@@ -1,0 +1,168 @@
+<div id="content" class="metatrader-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T65M2L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T65M2L');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader | mt.binary.com</title>
+            <div id="content_class">metatrader-content</div>
+        </div>
+        
+        <div class="container">
+
+<div id="metatrader">
+    <h1>MetaTrader 帳戶管理</h1>
+
+    <p id="errorMsg" class="notice-msg center-text invisible"></p>
+
+    <div id="mt-container" class="gr-row invisible">
+        <div class="gr-3 gr-12-m">
+            <div class="sidebar-left">
+                <ul class="sidebar-nav">
+                    <li id="nav-demo" class="selected"><a href="#demo">模擬帳戶</a></li>
+                    <li id="nav-financial"><a href="#financial">金融帳戶</a></li>
+                    <li id="nav-volatility"><a href="#volatility">波動率指數帳戶</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="gr-9 gr-12-m">
+            <div id="section-demo" class="section invisible">
+                <h3>模擬帳戶</h3>
+                <p class="msg-account notice-msg center-text invisible"></p>
+                <form class="form-new-account invisible">
+                    <p class="account-msg"></p>
+                    <div class="gr-row gr-padding-10">
+                        <div class="gr-6 form_label">帳戶類型</div>
+                        <div class="gr-6 form_label align-start account-type">示範</div>
+                    </div>
+                    <div class="gr-row gr-padding-10 invisible">
+                        <div class="gr-6 form_label"><label>槓桿</label></div>
+                        <div class="gr-6">
+                            <select class="ddlLeverage">
+                                <option value="1">1</option>
+                                <option value="50">50</option>
+                                <option value="100" selected="selected">100</option>
+                                <option value="200">200</option>
+                                <option value="500">500</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="name-row gr-row gr-padding-10 invisible">
+                        <div class="gr-6 form_label"><label>姓名</label></div>
+                        <div class="gr-6"><input type="text" class="txtName" maxlength="30" /></div>
+                    </div>
+                    <div class="gr-row gr-padding-10">
+                        <div class="gr-6 form_label"><label>主密碼（交易存取）</label></div>
+                        <div class="gr-6">
+                            <input type="password" class="txtMainPass password">
+                            <div class="hint">最少 8 個字元。必須同時包含數字和大小寫字母。</div>
+                        </div>
+                    </div>
+                    <div class="gr-row gr-padding-10">
+                        <div class="gr-6 form_label"><label>主密碼驗證</label></div>
+                        <div class="gr-6"><input type="password" class="txtMainPass2" /></div>
+                    </div>
+                    <div class="gr-row gr-padding-10">
+                        <div class="gr-6 form_label"><label>投資者密碼 （唯讀存取權限）</label></div>
+                        <div class="gr-6"><input type="password" class="txtInvestPass" /></div>
+                    </div>
+                    <div class="tnc-row gr-row gr-padding-10 invisible">
+                        <div class="gr-12 center-text">
+                            <input type="checkbox" class="chkTNC" />
+                            <label>我已閱讀並同意 <a target="_blank" href="/binary-mt/br_tnc/zh_tw/terms-and-conditions.html">條款與條件</a> 網站的。</label>
+                        </div>
+                    </div>
+                    <div class="gr-row gr-padding-10">
+                        <div class="gr-6 form_label"></div>
+                        <div class="gr-6">
+                            <button class="button">開立帳戶</button>
+                            <div class="formMessage center-text"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="account-details"></div>
+            </div>
+            <div id="section-financial" class="section invisible">
+                <h3>金融帳戶</h3>
+                <p class="msg-account notice-msg center-text invisible"></p>
+                <div class="authenticate invisible">
+                    <p>對您的 Binary.com 帳戶進行身份驗證，以開立 MT5 金融帳戶。</p>
+                    <p>為驗證您的帳號，請將以下文件通過電子郵件傳到<a href="mailto:support@binary.com">support@binary.com</a>:</p>
+                    <ul class="bullet">
+                        <li>顯示您名字和出生日期的護照、駕照（臨時或永久）或身份證的掃描件。</li>
+                        <li>水電煤帳單或銀行月結單掃描件（日期不得超過3個月）。</li>
+                    </ul>
+                </div>
+                <form class="form-new-account invisible"></form>
+                <div class="account-details"></div>
+                <p class="msg-switch-to-deposit notice-msg center-text invisible">如要在MT5帳戶存款或提款，請切換到您的Binary.com真實帳戶。</p>
+                <div class="accordion invisible">
+                    <h3>把錢存入</h3>
+                    <div>
+                        <form class="form-deposit">
+                            <p>把資金從Binary.com帳戶轉移到您的MT5帳戶︰</p>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label">轉移自</div>
+                                <div class="gr-6 form_label align-start binary-login"></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label">存款到</div>
+                                <div class="gr-6 form_label align-start mt-login"></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label"><label>金額</label></div>
+                                <div class="gr-6">&#36; <input type="text" maxlength="10" class="txtAmount" /></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label"></div>
+                                <div class="gr-6">
+                                    <button class="button">存款</button>
+                                    <div class="formMessage center-text"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <h3>取款</h3>
+                    <div>
+                        <form class="form-withdrawal">
+                            <p>把資金從您的MT5帳戶轉移到Binary.com帳戶︰</p>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label">提款自</div>
+                                <div class="gr-6 form_label align-start mt-login"></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label">轉移到</div>
+                                <div class="gr-6 form_label align-start binary-login"></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label"><label>MT5 主密碼</label></div>
+                                <div class="gr-6"><input type="password" class="txtMainPass" /></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label"><label>金額</label></div>
+                                <div class="gr-6">&#36; <input type="text" maxlength="10" class="txtAmount" /></div>
+                            </div>
+                            <div class="gr-row gr-padding-10">
+                                <div class="gr-6 form_label"></div>
+                                <div class="gr-6">
+                                    <button class="button">提款</button>
+                                    <div class="formMessage center-text"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="section-volatility" class="section invisible"></div>
+        </div>
+    </div>
+
+    <p id="errorMsg" class="notice-msg center-text invisible"></p>
+
+    <div id="loading"></div>
+</div>

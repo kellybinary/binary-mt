@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style id="antiClickjack">body{display:none !important;}</style>
+        <script type="text/javascript">
+            if (self === top) {
+                var antiClickjack = document.getElementById("antiClickjack");
+                antiClickjack.parentNode.removeChild(antiClickjack);
+            } else {
+                top.location = self.location;
+            }
+        </script>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="ZH_CN" />
+        <meta name="description" content=" Binary.com让每个人都能轻松参与金融市场。您可交易各主要货币、股票指数和大宗商品，投资门槛低至1美元。" />
+        <meta name="keywords" content=" 二元期权、外汇、外汇交易、在线交易、金融交易、二元期权交易、指数交易、交易指数、外汇交易、交易大宗商品、二元期权策略、二元经纪、二元投注、二元期权交易平台、二元策略、金融、股票、投资、交易" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="dcterms.rightsHolder" content="" />
+        <meta name="dcterms.rights" content="" />
+        <meta name="google-site-verification" content="roReCEK-wNa1EMA6ZM9a4zCOQOMqxfJjvfsZMC9qh_k" />
+        <meta property="og:title" content="" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/binary-mt/br_tnc/images/common/og_image.gif" />
+
+        <title>MetaTrader 保证金政策 | mt.binary.com</title>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/binary-mt/br_tnc/images/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/binary-mt/br_tnc/images/favicons/favicon-192x192.png">
+        <link rel="icon" type="image/png" sizes="160x160" href="/binary-mt/br_tnc/images/favicons/favicon-160x160.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/binary-mt/br_tnc/images/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/binary-mt/br_tnc/images/favicons/favicon-16x16.png" >
+        <link rel="icon" type="image/png" sizes="32x32" href="/binary-mt/br_tnc/images/favicons/favicon-32x32.png" >
+
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=en" hreflang="EN" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=de" hreflang="DE" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=es" hreflang="ES" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=fr" hreflang="FR" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=id" hreflang="ID" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=it" hreflang="IT" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=pl" hreflang="PL" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=pt" hreflang="PT" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=ru" hreflang="RU" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=th" hreflang="TH" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=vi" hreflang="VI" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=zh_cn" hreflang="ZH_CN" /> 
+          <link rel="alternate" href="/binary-mt/br_tnc/zh_cn/margin-policy.html?l=zh_tw" hreflang="ZH_TW" /> 
+        
+         <link rel="stylesheet" href="/binary-mt/br_tnc/css/binary.min.css?7a05fkiu">
+         <link rel="stylesheet" href="https://style.binary.com/binary.css?7a05fkiu">
+        
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Array.prototype.includes,String.prototype.includes&unknown=polyfill"></script>
+<script>
+    //A global variable required to initialize Page object.
+    window.page_params = {settings: {"valid_loginids":"MX|MF|VRTC|MLT|CR|FOG|VRTJ|JP","image_link":{"hourglass":"/binary-mt/br_tnc/images/common/hourglass_1.gif"}}};
+</script>  <script src='/binary-mt/br_tnc/js/binary.js?7a05fkiu' defer async></script>
+    </head>
+
+
+<body class="ZH_CN">
+    <div id='page-wrapper'>
+    <div id="topbar" class="no-print">
+        <div class="container">
+            <div class="gr-row">
+                <div id="topbar-msg" class='gr-6 gr-5-t gr-12-p gr-12-m invisible upgrademessage'>
+                    <span class='gr-hide-m'>
+                        <span id='virtual-text'>您使用的是虚拟账户。</span>
+                    </span>
+                </div>
+                <div class='gr-6 gr-7-t gr-12-p gr-12-m' id='topbar-info'>
+                    <div class="gr-row">
+                        <div class='gr-5 gr-6-m no-underline' id="gmt-clock" data-balloon-pos="down"></div>
+                        <div class='gr-2 gr-hide-m' id='contact-us'>
+                            <!-- <a class="pjaxload" href="contact">联系我们</a> -->
+                        </div> 
+                        <div class='gr-5 gr-6-m'>
+                            <!-- <div class="languages">
+                                <ul id="display_language">
+                                    <li>
+                                        <span class="world world-white"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                                <ul id="select_language">
+                                    <li>
+                                        <span class="world world-black"></span>
+                                        <div class="language-wrapper">
+                                            <span class="language"></span>
+                                        </div>
+                                        <span class="nav-caret"></span>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="header" class="no-print">
+        <div class='container'>
+            <div class='gr-12'>
+                <div class='gr-row gr-row-align-middle'>
+                    <div class='gr-3 gr-2-m gr-2-p'>
+                        <a id="logo" href="javascript:;">
+                            <div class='gr-row logo-parent'>
+                                <div class='gr-3 gr-12-m gr-12-p gr-no-gutter logo'>
+                                    <div></div>
+                                </div>
+                                <div class='gr-9 gr-hide-m gr-hide-p binary-logo-text'>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- <div class='gr-6 gr-hide-m gr-hide-p' gr-padding-10>
+                        <div id="main-navigation"></div>
+                    </div> -->
+                    <div id="client-logged-in" class="gr-3 gr-7-m gr-8-p gr-no-gutter by_client_type client_real client_virtual center-text invisible">
+                        <div id="main-logout">
+                            <ul id="main-account" class="nav-menu main-nav">
+                                <li class="account">
+                                    <a href="javascript:;">
+                                        <div class="main-account">
+                                            <div class="account-type"></div>
+                                            <div class="account-id"></div>
+                                            <div class="topMenuBalance">0</div>
+                                        </div>
+                                        <div class="nav-caret"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul id="all-accounts" class="nav-menu main-nav">
+                                <li class="account">
+                                    <a href="javascript:;">
+                                        <div class="main-account">
+                                            <div class="account-type"></div>
+                                            <div class="account-id"></div>
+                                            <div class="topMenuBalance">0</div>
+                                        </div>
+                                        <div class="nav-caret"></div>
+                                    </a>
+                                    <ul>
+                                        <div class="separator-line-thin-gray"></div>
+                                        <div class="login-id-list"></div>
+                                        <a href="javascript:;" id="btn_logout" class="logout">
+                                            <li>注销</li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="client-logged-out" class="gr-3 gr-8-m gr-8-p gr-no-gutter by_client_type client_logged_out invisible gr-padding-10">
+                        <a id="btn_login" class="button" href="javascript:;"><span>登录</span></a>
+                    </div>
+                    <!-- <div class='gr-hide gr-show-m gr-2-m gr-show-p gr-2-p gr-no-gutter-mobile align-end'>
+                        <div id='mobile-menu-icon-container'>
+                            <a href='#mobile-menu' id='mobile-menu-icon'>
+                                <img class='responsive' src="/binary-mt/br_tnc/images/pages/binary-mobile-menu.svg" />
+                            </a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content-holder">
+    <div id="main-menu" class="tab-menu">
+    <div class="tab-menu-wrap container gr-hide-m gr-hide-p hidden">
+        <div class="gr-12 gr-no-gutter">
+            <ul class="items">  <li id="" class="item by_client_type client_real client_virtual">
+                    <a class="link with_login_cookies pjaxload" target="" href="/binary-mt/br_tnc/zh_cn/user/settings/metatrader.html">MetaTrader Settings</a>
+                    
+                </li>  </ul>
+        </div>
+    </div>
+</div>
+    <div class='gr-hide gr-show-m gr-show-p' id='mobile-menu-container'>
+    <div class='gr-hide' id='mobile-menu'>
+        <ul>  <li id="" class="item by_client_type client_real client_virtual">
+                <a class="pjaxload link with_login_cookies pjaxload" href="/binary-mt/br_tnc/zh_cn/user/settings/metatrader.html">MetaTrader Settings</a>
+                
+            </li>  </ul>
+    </div>
+</div>
+    <!-- FlushHead -->
+
+    <div id="content" class="margin-policy-content">
+        <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T65M2L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T65M2L');</script>
+<!-- End Google Tag Manager -->
+        <div id="page_info" style="display:none;">
+            <title>MetaTrader 保证金政策 | mt.binary.com</title>
+            <div id="content_class">margin-policy-content</div>
+        </div>
+
+<div class="container">
+    <div class="gr-row">
+        <div class="gr-12">
+            <h1>保证金政策</h1>
+        </div>
+
+        <div class="gr-12 gr-padding-30 center-text">
+            <h2>什么是保证金？</h2>
+            <p>保证金允许您进行杠杆交易，让您以较少资金使用同等的市场设施。</p>
+            <div class="mt-box gr-12">
+                <p class="mt-box-content">如果您想要通过传统经纪商以<strong>每单位 50美元&#36;</strong>的价格购买某一资产 <strong>100 个单位</strong>，此笔交易您需支付<strong>5,000美元&#36;</strong>。</p>
+            </div>
+            <p>当您使用 CFD （一种杠杆产品）时，您可以较低成本购买某一资产 100 个单位。</p>
+        </div>
+
+        <hr class="gr-12 separator">
+
+        <div class="gr-12 gr-padding-30 center-text">
+            <h2>保证金如何计算？</h2>
+            <p>差价合约保证金的计算方法如下︰</p>
+            <div class="mt-box gr-12">
+                <div class="mt-img mr1-icon"></div>
+                <p class="mt-box-content">如果您以<strong>&#36 20,000 美元的价格</strong>和<strong>0.01(1%) 保证金率</strong>购入<strong>1股波动率 100 指数</strong>，购买此一手的所需保证金计算方法如下︰</p>
+                <div class="mt-img mr2-icon"></div>
+            </div>
+        </div>
+
+        <div class="gr-12 gr-padding-30 center-text">
+            <p>外汇符号保证金的计算方法如下︰</p>
+            <div class="mt-box gr-12">
+                <div class="mt-img l1-icon"></div>
+                <p class="mt-box-content">如果您以<strong>100,000 大小的合约</strong>和<strong>100:1的杠杆率</strong>购入<strong>1手欧元/美元符号</strong>，购买此一手的所需保证金计算方法如下︰</p>
+                <div class="mt-img l2-icon"></div>
+            </div>
+        </div>
+
+        <hr class="gr-12 separator">
+
+        <div class="gr-12 gr-padding-30">
+            <h2>什么是追加保证金要求，我们如何使用它？</h2>
+            <p>当您的账户资金低于保证金要求时，我们将对您的账户发送追加保证金要求。此状态不影响您开盘交易的能力。</p>
+
+            <h2>什么是止损水平，我们如何使用它？</h2>
+            <p>如果您的账户处于追加保证金通知延长期内，在无法继续持仓时将达到强制平仓水平。这将导致您的待处理订单被删除，以及持仓头寸被强制平仓 （也称为强制清算）。</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid fill-bg-color no-bottom-margin">
+    <div class="container">
+        <div class="gr-row">
+            <div class="gr-12 gr-padding-30">
+                <p>一旦您的账户达到强制清算水平，您的订单和头寸将按以下顺序强行平仓︰</p>
+                <div class="gr-prefix-1">
+                    <ul class="checked">
+                        <li>我们分析您的挂单。</li>
+                        <li>我们删除订单，并保留金额最大的保证金。</li>
+                        <li>如果您的保证金水平仍处于强制平仓水平，您的下一个订单将被删除。然而，没有保证金要求的订单将不会被删除。</li>
+                        <li>如果您的保证金水平仍处于强制平仓水平，我们将对损失最大的持仓头寸进行强制平仓。</li>
+                        <li>我们将继续关闭未平仓合约，直到您的保证金水平高于强制平仓水平。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  </div>
+
+</div>
+<div id="footer">
+<div id="footer-menu" class="primary-bg-color">
+<div class="container">
+<div class="gr-row gr-padding-10">
+    <div class="gr-3">
+        <!-- <h4 class="secondary-color">部分 1</h4> -->
+        <ul>
+            <li>
+                <a class="pjaxload" href="/binary-mt/br_tnc/zh_cn/margin-policy.html">保证金政策</a>
+            </li>
+        </ul>
+    </div>
+    <div class="gr-3">
+        <!-- <h4 class="secondary-color">部分 2</h4> -->
+        <ul>
+            <li>
+                <a class="pjaxload" href="/binary-mt/br_tnc/zh_cn/contract-specifications.html">合约规格</a>
+            </li>
+        </ul>
+    </div>
+    <div class="gr-3">
+        <!-- <h4 class="secondary-color">部分 3</h4> -->
+        <ul>
+            <li>
+                <a class="pjaxload" href="/binary-mt/br_tnc/zh_cn/download-metatrader.html">下载 MetaTrader</a>
+            </li>
+        </ul>
+    </div>
+    <div class="gr-3">
+        <!-- <h4 class="secondary-color">部分 4</h4> -->
+        <ul>
+            <li>
+                <a class="pjaxload" href="/binary-mt/br_tnc/zh_cn/terms-and-conditions.html">条款与条件</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+<div id="footer-regulatory" class="primary-color-dark">
+<div class="container">
+<div class="gr-parent">
+    <div class=" gr-padding-10">
+        <div class="gr-row">
+            <div id="regulatory-text" class="gr-12">
+                高风险投资警告︰ 外汇和/或保证金差价合约交易有很高的风险，可能不适合所有投资者。您的损失可能会超过存入的资金。因此，您不可用赔不起的资本下注。决定通过本网站提供的产品交易之前，您须仔细考虑您的财务目标、交易经验的需求和水平。尤其是，您须了解保证金交易相关的所有风险。而且Binary 公司集团并不针对任何金融产品的获取、持有或处置提供推荐、 建议或意见，所有提供服务都仅限于执行。
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="ratelimit-error-message">
+<div class="message">
+    您已达每秒最大请求限额。请 <a href="javascript:;" id="ratelimit-refresh-link">刷新</a>页面继续操作。
+</div>
+</div>
+</div>
+<div id="footer-last" class="primary-bg-color">
+<div class="container">
+<div class="gr-padding-10">
+    <p class="copy-right">
+        &copy; 2016 Binary.com
+    </p>
+</div>
+</div>
+</div>
+</div>
