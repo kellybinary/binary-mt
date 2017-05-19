@@ -180,7 +180,7 @@ var MetaTraderUI = (function() {
                 'investPassword'  : $form.find('.txtInvestPass').val(),
                 'leverage'        : '100' // $form.find('.ddlLeverage').val()
             };
-            if (accType === 'financial') {
+            if (/(demo|financial)/.test(accType)) {
                 req.mt5_account_type = 'cent';
             }
             MetaTraderData.requestSend(req);

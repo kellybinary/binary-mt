@@ -3,11 +3,10 @@ var MetaTrader = (function(){
 
     var getAccountType = function(group) {
         var typeMap = {
-            'virtual'  : 'demo',
             'vanuatu'  : 'financial',
             'costarica': 'volatility'
         };
-        return group ? (typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
+        return group ? (/demo/.test(group) ? 'demo' : typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
     };
 
     var validateRequired = function(value) {
