@@ -23,18 +23,6 @@
                         <div class="gr-6 form_label">[% l('Account type') %]</div>
                         <div class="gr-6 form_label align-start account-type">[% l('Demo') %]</div>
                     </div>
-                    <div class="gr-row gr-padding-10 invisible">
-                        <div class="gr-6 form_label"><label>[% l('Leverage') %]</label></div>
-                        <div class="gr-6">
-                            <select class="ddlLeverage">
-                                <option value="1">1</option>
-                                <option value="50">50</option>
-                                <option value="100" selected="selected">100</option>
-                                <option value="200">200</option>
-                                <option value="500">500</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="name-row gr-row gr-padding-10 invisible">
                         <div class="gr-6 form_label"><label>[% l('Name') %]</label></div>
                         <div class="gr-6"><input type="text" class="txtName" maxlength="30" /></div>
