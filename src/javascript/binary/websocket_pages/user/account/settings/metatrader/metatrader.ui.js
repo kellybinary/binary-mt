@@ -178,10 +178,11 @@ var MetaTraderUI = (function() {
                 'name'            : /demo/.test(accType) ? $form.find('.txtName').val() : TUser.get().fullname,
                 'mainPassword'    : $form.find('.txtMainPass').val(),
                 'investPassword'  : $form.find('.txtInvestPass').val(),
-                'leverage'        : '100' // $form.find('.ddlLeverage').val()
+                'leverage'        : 500,
             };
             if (/(demo|financial)/.test(accType)) {
                 req.mt5_account_type = 'cent';
+                req.leverage = 1000;
             }
             MetaTraderData.requestSend(req);
         }
