@@ -18146,11 +18146,10 @@ var BinarySocket = new BinarySocketClass();
 
     var getAccountType = function(group) {
         var typeMap = {
-            'virtual'  : 'demo',
             'vanuatu'  : 'financial',
             'costarica': 'volatility'
         };
-        return group ? (typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
+        return group ? (/demo/.test(group) ? 'demo' : typeMap[group.replace(/(binary_|_cent)/, '').split('\\')[1]] || '') : '';
     };
 
     var validateRequired = function(value) {
@@ -18513,10 +18512,11 @@ var BinarySocket = new BinarySocketClass();
                 'name'            : /demo/.test(accType) ? $form.find('.txtName').val() : TUser.get().fullname,
                 'mainPassword'    : $form.find('.txtMainPass').val(),
                 'investPassword'  : $form.find('.txtInvestPass').val(),
-                'leverage'        : '100' // $form.find('.ddlLeverage').val()
+                'leverage'        : 500,
             };
-            if (accType === 'financial') {
+            if (/(demo|financial)/.test(accType)) {
                 req.mt5_account_type = 'cent';
+                req.leverage = 1000;
             }
             MetaTraderData.requestSend(req);
         }
@@ -18643,7 +18643,7 @@ var BinarySocket = new BinarySocketClass();
         var lc = response.landing_company;
         hasFinancialCompany = lc.hasOwnProperty('mt_financial_company') && lc.mt_financial_company.shortcode === 'vanuatu';
         hasGamingCompany    = lc.hasOwnProperty('mt_gaming_company')    && lc.mt_gaming_company.shortcode    === 'costarica';
-        if (lc.hasOwnProperty('financial_company') && lc.financial_company.shortcode === 'costarica' && (hasFinancialCompany || hasGamingCompany)) {
+        if (hasFinancialCompany || hasGamingCompany) {
             initOk();
         } else {
             notEligible();
